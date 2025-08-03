@@ -67,6 +67,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\JotLink.Shared\JotLink.Shared.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="Pages\NoteDetails.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

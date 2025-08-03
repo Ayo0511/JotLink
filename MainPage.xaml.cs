@@ -5,7 +5,7 @@ namespace JotLink
     {
         int count = 100;
         Button myButton;
-        Note note= new Note("stuff");
+        NoteFE note= new NoteFE("stuff");
         
         public MainPage()
         {

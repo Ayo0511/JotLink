@@ -10,6 +10,12 @@
         
         >
         <VerticalStackLayout>
+
+
+            <Entry x:Name="LinkEntry" Placeholder="Paste note link here" />
+            <Button Text="Load Note" Clicked="LoadNoteFromLink_Clicked" />
+
+
             <SearchBar 
                 Placeholder="Search Notes..."
                 TextChanged="SearchBar_TextChanged"                                             

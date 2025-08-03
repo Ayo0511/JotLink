@@ -9,7 +9,7 @@ public partial class NotesViewModel : ObservableObject
 {
     private readonly SqLiteConnection _connection;
 
-    public ObservableCollection<Note> Notes { get; } = new();
+    public ObservableCollection<NoteFE> Notes { get; } = new();
 
     public NotesViewModel(SqLiteConnection connection)
     {
@@ -26,12 +26,12 @@ public partial class NotesViewModel : ObservableObject
         Notes.Clear();
         foreach (var dto in noteDto)
         {
-            Notes.Add(new Note("Unnamed Note")); // Replace with mapping logic if needed
+            Notes.Add(new NoteFE("Unnamed NoteFE")); // Replace with mapping logic if needed
         }
     }
 
     [RelayCommand]
-    public async Task AddNoteAsync(Note note)
+    public async Task AddNoteAsync(NoteFE note)
     {
         var db = _connection.CreateConnection();
         await db.InsertAsync(new NotesDTO

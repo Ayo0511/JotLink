@@ -1,23 +1,24 @@
 using System.Collections.ObjectModel;
+using System.Net.Http.Json;
 
 namespace JotLink.Pages;
 
 public partial class Notes_List : ContentPage
 {
-    public ObservableCollection<Note> Notes;
-    private Note _selectedNote;
+    public ObservableCollection<NoteFE> Notes;
+    private NoteFE _selectedNote;
 
   
-    Note note = new Note("Hello!");
-    Note note1 = new Note("meek");
+    NoteFE note = new NoteFE("Hello!");
+    NoteFE note1 = new NoteFE("meek");
 
 
-    public Notes_List()
+    public Notes_List()                  //create backend in same  project 
 	{
-        InitializeComponent();
+        InitializeComponent();   //don
        
 
-        Notes = new ObservableCollection<Note>() ;   
+        Notes = new ObservableCollection<NoteFE>() ;   
         
         note.Content = "welcome stuff stuff stuff stuff stuf fstuff stuff stuff stuff";
         note1.Content = "meek mek me m ........";
@@ -30,26 +31,51 @@ public partial class Notes_List : ContentPage
 
     public async void createNote(object sender, EventArgs e)
     {
-        Note note = new Note{Title = "Unnamed Note"};
-        Notes.Add(note);
-        Title_txt.Text = null;
-
-
-        var connection = new SqLiteConnection().CreateConnection();
-        await connection.InsertAsync(new NotesDTO
+        var tempNote = new NoteFE
         {
-            Id = note.Id,
-            Title = note.Title,
-            Content = note.Content,
-            CreatedAt = note.CreatedAt,
-            LastModified = note.LastModified
-        });
+            Title = "Unnamed NoteFE",
+            Content = "" // prevent null
+        };
 
-        SimulateSelection(note);
+        var sharingService = new NoteSharingService();
+        var sharedNote = await sharingService.ShareNoteAsync(tempNote);
+
+        if (sharedNote == null)
+        {
+            await DisplayAlert("Error", "Failed to create note.", "OK");
+            return;
+        }
+
+        Notes.Add(sharedNote);
+
+        await addToDatabase(sharedNote);
+
+        string link = $"https://localhost:7287/n/{sharedNote.PublicId}";
+        await Clipboard.SetTextAsync(link);
+        await DisplayAlert("Link Copied", "The note link has been copied to your clipboard.", "OK");
+
+        SimulateSelection(sharedNote);
     }
 
 
-  protected override async void OnAppearing()
+    public async Task<NoteFE?> FetchNoteFromLink(string publicId)
+    {
+        var client = new HttpClient
+        {
+            BaseAddress = new Uri("https://localhost:7287/") // must match backend
+        };
+
+        var response = await client.GetAsync($"n/{publicId}");
+
+        if (!response.IsSuccessStatusCode)
+            return null;
+
+        return await response.Content.ReadFromJsonAsync<NoteFE>();
+    }
+
+
+
+    protected override async void OnAppearing()
  {
     base.OnAppearing();
 
@@ -61,13 +87,14 @@ public partial class Notes_List : ContentPage
 
     foreach (var dto in dtos)
     {
-        Notes.Add(new Note
+        Notes.Add(new NoteFE
         {
             Title = dto.Title,
             Content = dto.Content,
             CreatedAt = dto.CreatedAt,
             LastModified = dto.LastModified,
-            Id = dto.Id
+            Id = dto.Id,
+            PublicId= dto.PublicId
         });
     }
 }
@@ -107,23 +134,20 @@ public partial class Notes_List : ContentPage
 
     private void noteList_ItemSelected(object sender, SelectedItemChangedEventArgs e)
     {
-        if (e.SelectedItem is Note selectedNote)
+        if (e.SelectedItem is NoteFE selectedNote)
         {
-            
+            NoteLinkStore.CurrentPublicId = selectedNote.PublicId;
             _selectedNote = selectedNote;
             noteList.SelectedItem=null;
 
-            Shell.Current.GoToAsync(nameof(NoteDetails), new Dictionary<string, object>
-        {
-            {"SelectedNote",selectedNote}
-        }
-           );
-             
+            NoteDetails.loadedNote = selectedNote;
+            Shell.Current.GoToAsync(nameof(NoteDetails));
+
 
         }            
         
     }
-
+    
 
     public void sortByLastOpened() 
     { 
@@ -138,7 +162,22 @@ public partial class Notes_List : ContentPage
     }
 
 
+    public async Task addToDatabase(NoteFE note)
+    {
+        var connection = new SqLiteConnection().CreateConnection();
 
+        var dto = new NotesDTO
+        {
+            Id = note.Id,
+            Title = note.Title,
+            Content = note.Content,
+            CreatedAt = note.CreatedAt,
+            LastModified = note.LastModified,
+            PublicId= note.PublicId
+        };
+
+        await connection.InsertOrReplaceAsync(dto);
+    }
     
 
 
@@ -171,18 +210,17 @@ public partial class Notes_List : ContentPage
 
 
     //simulate event driven function for opening note
-    private void SimulateSelection(Note noteToSelect)
+    private async void SimulateSelection(NoteFE noteToSelect)
     {
         if (noteToSelect == null) return;
 
-        var args = new SelectedItemChangedEventArgs(noteToSelect, 0);
-        noteList_ItemSelected(this, args);
+        NoteDetails.loadedNote = noteToSelect;
+        await Shell.Current.GoToAsync(nameof(NoteDetails));
     }
-
 
     private void CheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        if (sender is CheckBox checkbox && checkbox.BindingContext is Note item) 
+        if (sender is CheckBox checkbox && checkbox.BindingContext is NoteFE item) 
         {
             var note = Notes;
             int index = note.IndexOf(item);
@@ -191,8 +229,49 @@ public partial class Notes_List : ContentPage
         }
     }
 
+    private async void LoadNoteFromLink_Clicked(object sender, EventArgs e)
+    {
+        var fullLink = LinkEntry.Text?.Trim();
+        if (string.IsNullOrEmpty(fullLink))
+        {
+            await DisplayAlert("Error", "Please enter a link.", "OK");
+            return;
+        }
+
+        // Extract the PublicId from the URL (assumes format https://yourdomain.com/n/{publicId})
+        var parts = fullLink.Split('/');
+        var publicId = parts.Last();
+
+        var note = await FetchNoteFromLink(publicId);
+
+        if (note == null)
+        {
+            await DisplayAlert("Not found", "NoteFE not found or invalid link.", "OK");
+            return;
+        }
+
+        // Add or update note in your ObservableCollection
+        var existingNote = Notes.FirstOrDefault(n => n.PublicId == note.PublicId);
+        if (existingNote != null)
+        {
+            // Update existing note
+            var index = Notes.IndexOf(existingNote);
+            Notes[index] = note;
+        }
+        else
+        {
+            // Add new note
+            Notes.Add(note);
+        }
+
+        // Optionally save to local DB here as well
+
+       await addToDatabase(note);
+        SimulateSelection(note);
+    }
 
 
+   
 
     //navigate to main page use
     //Shell.Current.GoToAsync($"//nameof(Notes_List)") 
@@ -203,7 +282,10 @@ public partial class Notes_List : ContentPage
 
 
 
-
+public static class NoteLinkStore
+{
+    public static string? CurrentPublicId { get; set; }
+}
 
 
 

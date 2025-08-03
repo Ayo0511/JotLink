@@ -18,7 +18,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("JotLink")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+e3e38f6553ce1debadb71c578f654ec197fc86dd")]
 [assembly: System.Reflection.AssemblyProductAttribute("JotLink")]
 [assembly: System.Reflection.AssemblyTitleAttribute("JotLink")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

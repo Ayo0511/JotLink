@@ -85,6 +85,7 @@
                            Text="Share Note" 
                            FontSize="15"   
                            HorizontalOptions="Center"
+                        Clicked="ShareNote"
                                                            />
                     
                     <Button
