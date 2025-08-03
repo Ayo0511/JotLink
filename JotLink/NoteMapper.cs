@@ -64,12 +64,6 @@ namespace JotLink
             };
         }
 
-        public static void testGit()
-        {
-            for (int i = 0; i < 11; i++)
-            {
-                Console.WriteLine("ayofogsofdgsdf");
-            }
-        }
+        
     }
 }
