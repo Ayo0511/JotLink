@@ -5,8 +5,9 @@ namespace JotLink
     public static class NoteMapper
     {
        static  int test = 1000;
-        static int tennst = 1000;
-        static int tnest = 1000;
+        static int temmmst = 1000;
+
+
         public static NoteDTO ToDTO(NoteFE noteFE)
         {
             if (noteFE == null) return null!;
@@ -61,6 +62,14 @@ namespace JotLink
                 LastModified = dto.LastModified,
                 PublicId = dto.PublicId
             };
+        }
+
+        public static void testGit()
+        {
+            for (int i = 0; i < 11; i++)
+            {
+                Console.WriteLine("ayofogsofdgsdf");
+            }
         }
     }
 }
