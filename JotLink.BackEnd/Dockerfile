@@ -1,21 +1,25 @@
-# Use the official .NET SDK image to build the app
+# Use official .NET SDK image to build
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-WORKDIR /app
+WORKDIR /src
 
-# Copy csproj and restore
-COPY *.csproj ./
-RUN dotnet restore
+# Copy solution and project files
+COPY ../JotLink.sln ./
+COPY . ./JotLink.BackEnd/
+COPY ../JotLink.Shared/ ./JotLink.Shared/
 
-# Copy everything else and build
-COPY . ./
-RUN dotnet publish -c Release -o out
+# Restore
+RUN dotnet restore ./JotLink.BackEnd/JotLink.BackEnd.csproj
 
-# Use ASP.NET runtime image to run the app
+# Build and publish
+RUN dotnet publish ./JotLink.BackEnd/JotLink.BackEnd.csproj -c Release -o /app/out
+
+# Runtime stage
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 WORKDIR /app
 COPY --from=build /app/out .
 
-# Expose port 80
-EXPOSE 80
+# Use Render’s dynamic port
+ENV ASPNETCORE_URLS=http://+:$PORT
+EXPOSE 10000
 
 ENTRYPOINT ["dotnet", "JotLink.BackEnd.dll"]

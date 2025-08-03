@@ -8,6 +8,8 @@ using System.Collections.Specialized;
 
 namespace JotLink
 {
+
+    
     [Serializable]
     public class NoteFE
     {
@@ -18,6 +20,7 @@ namespace JotLink
         public DateTime CreatedAt { get; set; }
         public DateTime LastModified { get; set; }
         public string PublicId { get; set; }
+     
         
 
 
