@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="JotLink.Pages.Notes_List"
+             Title="Notes List"
+             NavigationPage.HasNavigationBar="False">
+    <StackLayout
+        x:Name="MainStack"
+         
+        
+        >
+        <VerticalStackLayout>
+            <SearchBar 
+                Placeholder="Search Notes..."
+                TextChanged="SearchBar_TextChanged"                                             
+                />
+
+            <Button
+                 x:Name="themeButton"
+                   Text="Light Mode"
+                   Clicked="changeMode"
+                 HorizontalOptions="Start"
+    />
+            <Button
+                 Text=":"
+                             />
+        </VerticalStackLayout>
+        
+         
+        
+        <ListView x:Name="noteList"
+              BackgroundColor="Black"
+                 
+              SeparatorVisibility="Default"
+              SeparatorColor="AntiqueWhite"  
+              ItemSelected="noteList_ItemSelected"
+                 
+              >
+
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+
+
+                        <StackLayout Padding="50"
+                                     
+                                       
+                                     
+                               
+                                
+                                >
+
+                            <CheckBox
+                                x:Name="noteCheckBox"
+                                
+                               CheckedChanged="CheckBox_CheckedChanged"
+                                
+                                />
+
+
+                            <Label x:Name="titleTXT"
+                            
+                            Text="{Binding Title}"
+                               
+                               FontAttributes="Bold"
+                               TextColor="White"
+                               FontSize="20" >
+                            
+
+                            
+                        </Label>
+
+
+                        <Label 
+                            x:Name="txt_snippet"
+                            Text="{Binding Snippet}"
+                               TextColor="Gray"
+                               FontSize="20" />
+                        
+                        <Label Text="{Binding LastModified, StringFormat='Modified: {0:MM/dd/yyyy HH:mm}'}"
+                               FontSize="12"
+                               TextColor="DarkGray"
+                               HorizontalOptions="End"/>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+        <HorizontalStackLayout
+            Spacing="10"
+            >
+            
+            <Button
+                  Text="Add Note"
+                  HeightRequest="60"
+                  WidthRequest="200"
+                  HorizontalOptions="End"
+                  Clicked="createNote"
+    />
+            <Button
+               Text="DeleteNote"
+               HeightRequest="60"
+               WidthRequest="200"
+               HorizontalOptions="Start" 
+               Clicked="deleteNote"
+    />
+            <Entry
+                 x:Name="Title_txt"
+    />
+            
+
+
+        </HorizontalStackLayout>
+        
+    </StackLayout>
+</ContentPage>
+    
+    
+   

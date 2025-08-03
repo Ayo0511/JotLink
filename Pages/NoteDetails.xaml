@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="JotLink.Pages.NoteDetails"
+             Title="NoteDetails"
+             BackgroundColor="{AppThemeBinding Dark=Black, Light=White}"
+             
+             >
+
+    <VerticalStackLayout 
+        x:Name="rootLayout"
+                 Padding="20" 
+                 Spacing="20">
+
+
+
+
+        <Editor x:Name="ContentEditor"
+                Text=""
+                BackgroundColor="Transparent"
+                TextColor="White"
+                FontSize="18"
+                Placeholder="Start typing..."
+                PlaceholderColor="Gray"
+                Margin="0"
+                AutoSize="Disabled"
+                HeightRequest="600"
+                />
+        
+        <Editor x:Name="TitleEditor"
+                Text=""
+                TextColor="White"
+                HeightRequest="10"
+                                        
+            />
+        
+        
+        <Button
+           
+              Text="Return to Notes"
+              HeightRequest="60"
+              WidthRequest="200"
+              HorizontalOptions="End"
+              Clicked="Return"
+/>
+        
+        
+        <HorizontalStackLayout
+            VerticalOptions="Center"
+            >
+
+            <Button
+                 x:Name="openMenu"
+                    Text="|||"
+                    HorizontalOptions="Start"
+                    Clicked="openMenu_Clicked"  
+    />
+            <Border
+            x:Name="optionsFrame"
+            StrokeShape="RoundRectangle 15"
+            IsVisible="False"
+            BackgroundColor="white"
+            Padding="18"
+            HeightRequest="90"
+            WidthRequest="0"
+
+            >
+            <StackLayout x:Name="OptionsPanel" 
+                                 IsVisible="False" 
+                                                               >
+
+                <HorizontalStackLayout 
+                               Spacing="10"
+                
+                                               >
+
+                    <Button 
+                           x:Name="temp"        
+                             Text="Download "
+                             FontSize="15"
+                             HorizontalOptions="Center"
+                               
+                                                                   />
+                    <Button  
+                           Text="Share Note" 
+                           FontSize="15"   
+                           HorizontalOptions="Center"
+                                                           />
+                    
+                    <Button
+                        x:Name="changeTheme"
+                          Text="Light Mode"
+                          FontSize="15"
+                          HorizontalOptions="Center"
+                          Clicked="changeTheme_Clicked"
+                        
+                        />
+                    <Button
+                        Text="Bold"
+                        FontAttributes="Bold"
+                        
+                        />
+                   <Button
+                        Text="Italic"
+                        FontAttributes="Italic"
+     
+     />
+
+
+
+                    </HorizontalStackLayout>
+            </StackLayout>
+            </Border>
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>
+    
+    
