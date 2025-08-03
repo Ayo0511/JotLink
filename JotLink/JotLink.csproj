@@ -67,6 +67,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\JotLink.BackEnd\JotLink.BackEnd.csproj" />
 	  <ProjectReference Include="..\JotLink.Shared\JotLink.Shared.csproj" />
 	</ItemGroup>
 

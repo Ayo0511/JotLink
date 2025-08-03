@@ -5,29 +5,15 @@ namespace JotLink.Pages;
 
 public partial class Notes_List : ContentPage
 {
-    public ObservableCollection<NoteFE> Notes;
-    private NoteFE _selectedNote;
-
-  
-    NoteFE note = new NoteFE("Hello!");
-    NoteFE note1 = new NoteFE("meek");
-
+    public ObservableCollection<NoteFE> Notes;   //changeback to debug
+    private NoteFE _selectedNote;  
 
     public Notes_List()                  //create backend in same  project 
 	{
-        InitializeComponent();   //don
-       
-
-        Notes = new ObservableCollection<NoteFE>() ;   
-        
-        note.Content = "welcome stuff stuff stuff stuff stuf fstuff stuff stuff stuff";
-        note1.Content = "meek mek me m ........";
-        //Notes.Add(note);
-        //Notes.Add(note1);
-
+        InitializeComponent();   //don                             
+        Notes = new ObservableCollection<NoteFE>() ;           
         noteList.ItemsSource = Notes;
 	}
-
 
     public async void createNote(object sender, EventArgs e)
     {

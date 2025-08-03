@@ -50,42 +50,47 @@ public partial class NoteDetails : ContentPage               ///, IQueryAttribut
 
     public async void Return(object sender, EventArgs e)
     {
-        if (_note == null) return;
+      
 
-        _note.Title = TitleEditor.Text;
-        _note.Content = ContentEditor.Text;
-        _note.LastModified = DateTime.Now;
+            if (_note == null) return;
 
-        // Save locally
-        var connection = new SqLiteConnection().CreateConnection();
+            _note.Title = TitleEditor.Text;
+            _note.Content = ContentEditor.Text;
+            _note.LastModified = DateTime.Now;
 
-        var dto = new NotesDTO
-        {
-            Id = _note.Id,
-            Title = _note.Title,
-            Content = _note.Content,
-            CreatedAt = _note.CreatedAt,
-            LastModified = _note.LastModified,
-            PublicId = _note.PublicId
-        };
+            // Save locally
+            var connection = new SqLiteConnection().CreateConnection();
 
-        await connection.UpdateAsync(dto);
+            var dto = new NotesDTO
+            {
+                Id = _note.Id,
+                Title = _note.Title,
+                Content = _note.Content,
+                CreatedAt = _note.CreatedAt,
+                LastModified = _note.LastModified,
+                PublicId = _note.PublicId
+            };
 
-        // Save remotely (update backend)
-        var sharingService = new NoteSharingService();
-        var updatedNote = await sharingService.UpdateNoteAsync(_note);
+            await connection.UpdateAsync(dto);
 
-        if (updatedNote == null)
-        {
-            await DisplayAlert("Error", "Failed to update note on server.", "OK");
+            // Save remotely (update backend)
+            var sharingService = new NoteSharingService();
+            var updatedNote = await sharingService.UpdateNoteAsync(_note);
+            if (updatedNote == null) { updatedNote = await sharingService.ShareNoteAsync(_note); }
+
+            if (updatedNote == null)
+            {
+                await DisplayAlert("Error", "Failed to update note on server.", "OK");
+            }
+            else
+            {
+                _note = updatedNote; // update local note with server response if needed
+            }
+
+            await Shell.Current.GoToAsync("..");
         }
-        else
-        {
-            _note = updatedNote; // update local note with server response if needed
-        }
-
-        await Shell.Current.GoToAsync("..");
-    }
+       
+     
 
 
 
@@ -164,6 +169,7 @@ public partial class NoteDetails : ContentPage               ///, IQueryAttribut
        DisplayAlert("Link Copied", "Link has been copied to your clipboard.", "OK");
 
     }
+
 }
 
 
