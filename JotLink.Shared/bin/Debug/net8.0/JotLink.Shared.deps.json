@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "JotLink.Shared/1.0.0": {
+        "runtime": {
+          "JotLink.Shared.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "JotLink.Shared/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

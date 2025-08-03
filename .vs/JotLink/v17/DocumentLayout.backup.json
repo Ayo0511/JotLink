@@ -1,0 +1,265 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\ayool\\Desktop\\JotLink\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{BDE620A2-37E5-4FFA-8708-EEC2B56C2A76}|JotLink\\JotLink.csproj|c:\\users\\ayool\\desktop\\jotlink\\jotlink\\pages\\notedetails.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDE620A2-37E5-4FFA-8708-EEC2B56C2A76}|JotLink\\JotLink.csproj|solutionrelative:jotlink\\pages\\notedetails.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDE620A2-37E5-4FFA-8708-EEC2B56C2A76}|JotLink\\JotLink.csproj|c:\\users\\ayool\\desktop\\jotlink\\jotlink\\pages\\notes list.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDE620A2-37E5-4FFA-8708-EEC2B56C2A76}|JotLink\\JotLink.csproj|solutionrelative:jotlink\\pages\\notes list.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDE620A2-37E5-4FFA-8708-EEC2B56C2A76}|JotLink\\JotLink.csproj|c:\\users\\ayool\\desktop\\jotlink\\jotlink\\pages\\notedetails.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{BDE620A2-37E5-4FFA-8708-EEC2B56C2A76}|JotLink\\JotLink.csproj|solutionrelative:jotlink\\pages\\notedetails.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EE1DD788-0381-4632-A524-A459850D8DCD}|JotLink.BackEnd\\JotLink.BackEnd.csproj|c:\\users\\ayool\\desktop\\jotlink\\jotlink.backend\\controllers\\notecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EE1DD788-0381-4632-A524-A459850D8DCD}|JotLink.BackEnd\\JotLink.BackEnd.csproj|solutionrelative:jotlink.backend\\controllers\\notecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDE620A2-37E5-4FFA-8708-EEC2B56C2A76}|JotLink\\JotLink.csproj|c:\\users\\ayool\\desktop\\jotlink\\jotlink\\notesharingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDE620A2-37E5-4FFA-8708-EEC2B56C2A76}|JotLink\\JotLink.csproj|solutionrelative:jotlink\\notesharingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDE620A2-37E5-4FFA-8708-EEC2B56C2A76}|JotLink\\JotLink.csproj|c:\\users\\ayool\\desktop\\jotlink\\jotlink\\notemapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDE620A2-37E5-4FFA-8708-EEC2B56C2A76}|JotLink\\JotLink.csproj|solutionrelative:jotlink\\notemapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EE1DD788-0381-4632-A524-A459850D8DCD}|JotLink.BackEnd\\JotLink.BackEnd.csproj|c:\\users\\ayool\\desktop\\jotlink\\jotlink.backend\\jotlink.backend.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{EE1DD788-0381-4632-A524-A459850D8DCD}|JotLink.BackEnd\\JotLink.BackEnd.csproj|solutionrelative:jotlink.backend\\jotlink.backend.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0AD0816-38E2-4C46-BC9C-C40F8E62F3AA}|JotLink.Shared\\JotLink.Shared.csproj|c:\\users\\ayool\\desktop\\jotlink\\jotlink.shared\\notedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0AD0816-38E2-4C46-BC9C-C40F8E62F3AA}|JotLink.Shared\\JotLink.Shared.csproj|solutionrelative:jotlink.shared\\notedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EE1DD788-0381-4632-A524-A459850D8DCD}|JotLink.BackEnd\\JotLink.BackEnd.csproj|c:\\users\\ayool\\desktop\\jotlink\\jotlink.backend\\notedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EE1DD788-0381-4632-A524-A459850D8DCD}|JotLink.BackEnd\\JotLink.BackEnd.csproj|solutionrelative:jotlink.backend\\notedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EE1DD788-0381-4632-A524-A459850D8DCD}|JotLink.BackEnd\\JotLink.BackEnd.csproj|c:\\users\\ayool\\desktop\\jotlink\\jotlink.backend\\note.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EE1DD788-0381-4632-A524-A459850D8DCD}|JotLink.BackEnd\\JotLink.BackEnd.csproj|solutionrelative:jotlink.backend\\note.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDE620A2-37E5-4FFA-8708-EEC2B56C2A76}|JotLink\\JotLink.csproj|c:\\users\\ayool\\desktop\\jotlink\\jotlink\\sqlite\\notesdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDE620A2-37E5-4FFA-8708-EEC2B56C2A76}|JotLink\\JotLink.csproj|solutionrelative:jotlink\\sqlite\\notesdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDE620A2-37E5-4FFA-8708-EEC2B56C2A76}|JotLink\\JotLink.csproj|c:\\users\\ayool\\desktop\\jotlink\\jotlink\\notefe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDE620A2-37E5-4FFA-8708-EEC2B56C2A76}|JotLink\\JotLink.csproj|solutionrelative:jotlink\\notefe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDE620A2-37E5-4FFA-8708-EEC2B56C2A76}|JotLink\\JotLink.csproj|c:\\users\\ayool\\desktop\\jotlink\\jotlink\\pages\\notes list.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{BDE620A2-37E5-4FFA-8708-EEC2B56C2A76}|JotLink\\JotLink.csproj|solutionrelative:jotlink\\pages\\notes list.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDE620A2-37E5-4FFA-8708-EEC2B56C2A76}|JotLink\\JotLink.csproj|c:\\users\\ayool\\desktop\\jotlink\\jotlink\\sqlite\\sqliteconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDE620A2-37E5-4FFA-8708-EEC2B56C2A76}|JotLink\\JotLink.csproj|solutionrelative:jotlink\\sqlite\\sqliteconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDE620A2-37E5-4FFA-8708-EEC2B56C2A76}|JotLink\\JotLink.csproj|c:\\users\\ayool\\desktop\\jotlink\\jotlink\\notesviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDE620A2-37E5-4FFA-8708-EEC2B56C2A76}|JotLink\\JotLink.csproj|solutionrelative:jotlink\\notesviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 12,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "NoteMapper.cs",
+              "DocumentMoniker": "C:\\Users\\ayool\\Desktop\\JotLink\\JotLink\\NoteMapper.cs",
+              "RelativeDocumentMoniker": "JotLink\\NoteMapper.cs",
+              "ToolTip": "C:\\Users\\ayool\\Desktop\\JotLink\\JotLink\\NoteMapper.cs",
+              "RelativeToolTip": "JotLink\\NoteMapper.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-03T04:34:31.374Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "JotLink.BackEnd.csproj",
+              "DocumentMoniker": "C:\\Users\\ayool\\Desktop\\JotLink\\JotLink.BackEnd\\JotLink.BackEnd.csproj",
+              "RelativeDocumentMoniker": "JotLink.BackEnd\\JotLink.BackEnd.csproj",
+              "ToolTip": "C:\\Users\\ayool\\Desktop\\JotLink\\JotLink.BackEnd\\JotLink.BackEnd.csproj",
+              "RelativeToolTip": "JotLink.BackEnd\\JotLink.BackEnd.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-08-03T04:25:39.749Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "NoteDTO.cs",
+              "DocumentMoniker": "C:\\Users\\ayool\\Desktop\\JotLink\\JotLink.Shared\\NoteDTO.cs",
+              "RelativeDocumentMoniker": "JotLink.Shared\\NoteDTO.cs",
+              "ToolTip": "C:\\Users\\ayool\\Desktop\\JotLink\\JotLink.Shared\\NoteDTO.cs",
+              "RelativeToolTip": "JotLink.Shared\\NoteDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-03T04:20:19.645Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "NoteDTO.cs",
+              "DocumentMoniker": "C:\\Users\\ayool\\Desktop\\JotLink\\JotLink.BackEnd\\NoteDTO.cs",
+              "RelativeDocumentMoniker": "JotLink.BackEnd\\NoteDTO.cs",
+              "ToolTip": "C:\\Users\\ayool\\Desktop\\JotLink\\JotLink.BackEnd\\NoteDTO.cs",
+              "RelativeToolTip": "JotLink.BackEnd\\NoteDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-03T04:11:59.218Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "NoteSharingService.cs",
+              "DocumentMoniker": "C:\\Users\\ayool\\Desktop\\JotLink\\JotLink\\NoteSharingService.cs",
+              "RelativeDocumentMoniker": "JotLink\\NoteSharingService.cs",
+              "ToolTip": "C:\\Users\\ayool\\Desktop\\JotLink\\JotLink\\NoteSharingService.cs",
+              "RelativeToolTip": "JotLink\\NoteSharingService.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAwDEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-03T01:38:10.624Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "NoteController.cs",
+              "DocumentMoniker": "C:\\Users\\ayool\\Desktop\\JotLink\\JotLink.BackEnd\\Controllers\\NoteController.cs",
+              "RelativeDocumentMoniker": "JotLink.BackEnd\\Controllers\\NoteController.cs",
+              "ToolTip": "C:\\Users\\ayool\\Desktop\\JotLink\\JotLink.BackEnd\\Controllers\\NoteController.cs",
+              "RelativeToolTip": "JotLink.BackEnd\\Controllers\\NoteController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-03T01:30:01.329Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Note.cs",
+              "DocumentMoniker": "C:\\Users\\ayool\\Desktop\\JotLink\\JotLink.BackEnd\\Note.cs",
+              "RelativeDocumentMoniker": "JotLink.BackEnd\\Note.cs",
+              "ToolTip": "C:\\Users\\ayool\\Desktop\\JotLink\\JotLink.BackEnd\\Note.cs",
+              "RelativeToolTip": "JotLink.BackEnd\\Note.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-03T01:26:53.001Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "NotesViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\ayool\\Desktop\\JotLink\\JotLink\\NotesViewModel.cs",
+              "RelativeDocumentMoniker": "JotLink\\NotesViewModel.cs",
+              "ToolTip": "C:\\Users\\ayool\\Desktop\\JotLink\\JotLink\\NotesViewModel.cs",
+              "RelativeToolTip": "JotLink\\NotesViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACgAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-30T19:42:03.575Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "NotesDTO.cs",
+              "DocumentMoniker": "C:\\Users\\ayool\\Desktop\\JotLink\\JotLink\\SqLite\\NotesDTO.cs",
+              "RelativeDocumentMoniker": "JotLink\\SqLite\\NotesDTO.cs",
+              "ToolTip": "C:\\Users\\ayool\\Desktop\\JotLink\\JotLink\\SqLite\\NotesDTO.cs",
+              "RelativeToolTip": "JotLink\\SqLite\\NotesDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-28T22:39:24.896Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "SqLiteConnection.cs",
+              "DocumentMoniker": "C:\\Users\\ayool\\Desktop\\JotLink\\JotLink\\SqLite\\SqLiteConnection.cs",
+              "RelativeDocumentMoniker": "JotLink\\SqLite\\SqLiteConnection.cs",
+              "ToolTip": "C:\\Users\\ayool\\Desktop\\JotLink\\JotLink\\SqLite\\SqLiteConnection.cs",
+              "RelativeToolTip": "JotLink\\SqLite\\SqLiteConnection.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-30T18:50:45.188Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "NoteFE.cs",
+              "DocumentMoniker": "C:\\Users\\ayool\\Desktop\\JotLink\\JotLink\\NoteFE.cs",
+              "RelativeDocumentMoniker": "JotLink\\NoteFE.cs",
+              "ToolTip": "C:\\Users\\ayool\\Desktop\\JotLink\\JotLink\\NoteFE.cs",
+              "RelativeToolTip": "JotLink\\NoteFE.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAAwCQAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-23T03:27:10.155Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "NoteDetails.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\ayool\\Desktop\\JotLink\\JotLink\\Pages\\NoteDetails.xaml.cs",
+              "RelativeDocumentMoniker": "JotLink\\Pages\\NoteDetails.xaml.cs",
+              "ToolTip": "C:\\Users\\ayool\\Desktop\\JotLink\\JotLink\\Pages\\NoteDetails.xaml.cs",
+              "RelativeToolTip": "JotLink\\Pages\\NoteDetails.xaml.cs",
+              "ViewState": "AgIAAIcAAAAAAAAAAAAAAJgAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-23T21:03:17.521Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "NoteDetails.xaml",
+              "DocumentMoniker": "C:\\Users\\ayool\\Desktop\\JotLink\\JotLink\\Pages\\NoteDetails.xaml",
+              "RelativeDocumentMoniker": "JotLink\\Pages\\NoteDetails.xaml",
+              "ToolTip": "C:\\Users\\ayool\\Desktop\\JotLink\\JotLink\\Pages\\NoteDetails.xaml",
+              "RelativeToolTip": "JotLink\\Pages\\NoteDetails.xaml",
+              "ViewState": "AgIAADwAAAAAAAAAAAAAAFQAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-07-23T21:03:04.005Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Notes List.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\ayool\\Desktop\\JotLink\\JotLink\\Pages\\Notes List.xaml.cs",
+              "RelativeDocumentMoniker": "JotLink\\Pages\\Notes List.xaml.cs",
+              "ToolTip": "C:\\Users\\ayool\\Desktop\\JotLink\\JotLink\\Pages\\Notes List.xaml.cs",
+              "RelativeToolTip": "JotLink\\Pages\\Notes List.xaml.cs",
+              "ViewState": "AgIAABMBAAAAAAAAAAAAwCoAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-23T20:22:32.616Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Notes List.xaml",
+              "DocumentMoniker": "C:\\Users\\ayool\\Desktop\\JotLink\\JotLink\\Pages\\Notes List.xaml",
+              "RelativeDocumentMoniker": "JotLink\\Pages\\Notes List.xaml",
+              "ToolTip": "C:\\Users\\ayool\\Desktop\\JotLink\\JotLink\\Pages\\Notes List.xaml",
+              "RelativeToolTip": "JotLink\\Pages\\Notes List.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-07-23T20:22:35.358Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

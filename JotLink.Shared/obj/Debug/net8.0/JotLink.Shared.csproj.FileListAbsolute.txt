@@ -1,0 +1,11 @@
+C:\Users\ayool\Desktop\JotLink\JotLink.Shared\bin\Debug\net8.0\JotLink.Shared.deps.json
+C:\Users\ayool\Desktop\JotLink\JotLink.Shared\bin\Debug\net8.0\JotLink.Shared.dll
+C:\Users\ayool\Desktop\JotLink\JotLink.Shared\bin\Debug\net8.0\JotLink.Shared.pdb
+C:\Users\ayool\Desktop\JotLink\JotLink.Shared\obj\Debug\net8.0\JotLink.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ayool\Desktop\JotLink\JotLink.Shared\obj\Debug\net8.0\JotLink.Shared.AssemblyInfoInputs.cache
+C:\Users\ayool\Desktop\JotLink\JotLink.Shared\obj\Debug\net8.0\JotLink.Shared.AssemblyInfo.cs
+C:\Users\ayool\Desktop\JotLink\JotLink.Shared\obj\Debug\net8.0\JotLink.Shared.csproj.CoreCompileInputs.cache
+C:\Users\ayool\Desktop\JotLink\JotLink.Shared\obj\Debug\net8.0\JotLink.Shared.dll
+C:\Users\ayool\Desktop\JotLink\JotLink.Shared\obj\Debug\net8.0\refint\JotLink.Shared.dll
+C:\Users\ayool\Desktop\JotLink\JotLink.Shared\obj\Debug\net8.0\JotLink.Shared.pdb
+C:\Users\ayool\Desktop\JotLink\JotLink.Shared\obj\Debug\net8.0\ref\JotLink.Shared.dll

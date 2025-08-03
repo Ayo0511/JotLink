@@ -1,0 +1,6 @@
+@JotLink.BackEnd_HostAddress = http://localhost:5263
+
+GET {{JotLink.BackEnd_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
