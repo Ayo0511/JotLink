@@ -50,7 +50,7 @@ public partial class Notes_List : ContentPage
 
         await addToDatabase(sharedNote);
 
-        string link = $"https://localhost:7287/n/{sharedNote.PublicId}";
+        string link = $"https://jotlink.onrender.com/n/{sharedNote.PublicId}";
         await Clipboard.SetTextAsync(link);
         await DisplayAlert("Link Copied", "The note link has been copied to your clipboard.", "OK");
 
@@ -62,7 +62,7 @@ public partial class Notes_List : ContentPage
     {
         var client = new HttpClient
         {
-            BaseAddress = new Uri("https://localhost:7287/") // must match backend
+            BaseAddress = new Uri("https://jotlink.onrender.com/")// must match backend
         };
 
         var response = await client.GetAsync($"n/{publicId}");

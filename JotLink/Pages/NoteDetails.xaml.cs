@@ -159,7 +159,8 @@ public partial class NoteDetails : ContentPage               ///, IQueryAttribut
 
     private void ShareNote(object sender, EventArgs e)
     {
-       Clipboard.SetTextAsync(publicId);
+        string link = $"https://jotlink.onrender.com/n/{_note.PublicId}";
+        Clipboard.SetTextAsync(link);
        DisplayAlert("Link Copied", "Link has been copied to your clipboard.", "OK");
 
     }

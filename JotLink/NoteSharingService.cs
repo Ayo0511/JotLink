@@ -14,7 +14,7 @@ namespace JotLink
         {
             _httpClient = new HttpClient
             {
-                BaseAddress = new Uri("https://localhost:7287/")
+                BaseAddress = new Uri("https://jotlink.onrender.com/")
             };
         }
 
