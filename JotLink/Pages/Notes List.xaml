@@ -4,16 +4,32 @@
              x:Class="JotLink.Pages.Notes_List"
              Title="Notes List"
              NavigationPage.HasNavigationBar="False">
+    
+    
+    
+    
     <StackLayout
         x:Name="MainStack"
-         
+         Padding="5"
         
         >
-        <VerticalStackLayout>
+        <HorizontalStackLayout
+            Spacing="5"
+            >
+            <Entry x:Name="LinkEntry" Placeholder="Paste note link here" 
+                   WidthRequest="700"
+                   MaximumWidthRequest="900"
+                  />
+            
+            <Button Text="Load Note" Clicked="LoadNoteFromLink_Clicked" 
+                    HorizontalOptions="End"/>
+        </HorizontalStackLayout>
+        <VerticalStackLayout
+            Spacing="5"
+            >
 
 
-            <Entry x:Name="LinkEntry" Placeholder="Paste note link here" />
-            <Button Text="Load Note" Clicked="LoadNoteFromLink_Clicked" />
+            
 
 
             <SearchBar 
@@ -21,15 +37,8 @@
                 TextChanged="SearchBar_TextChanged"                                             
                 />
 
-            <Button
-                 x:Name="themeButton"
-                   Text="Light Mode"
-                   Clicked="changeMode"
-                 HorizontalOptions="Start"
-    />
-            <Button
-                 Text=":"
-                             />
+          
+             
         </VerticalStackLayout>
         
          
@@ -49,28 +58,21 @@
 
 
                         <StackLayout Padding="50"
-                                     
-                                       
-                                     
-                               
-                                
+
                                 >
 
                             <CheckBox
-                                x:Name="noteCheckBox"
-                                
-                               CheckedChanged="CheckBox_CheckedChanged"
+                                x:Name="noteCheckBox"                              
+                                  CheckedChanged="CheckBox_CheckedChanged"
                                 
                                 />
 
 
-                            <Label x:Name="titleTXT"
-                            
-                            Text="{Binding Title}"
-                               
-                               FontAttributes="Bold"
-                               TextColor="White"
-                               FontSize="20" >
+                            <Label x:Name="titleTXT"                         
+                                     Text="{Binding Title}"                               
+                                     FontAttributes="Bold"
+                                     TextColor="White"
+                                     FontSize="20" >
                             
 
                             
@@ -79,9 +81,9 @@
 
                         <Label 
                             x:Name="txt_snippet"
-                            Text="{Binding Snippet}"
-                               TextColor="Gray"
-                               FontSize="20" />
+                              Text="{Binding Snippet}"
+                              TextColor="Gray"
+                              FontSize="20" />
                         
                         <Label Text="{Binding LastModified, StringFormat='Modified: {0:MM/dd/yyyy HH:mm}'}"
                                FontSize="12"
@@ -92,33 +94,72 @@
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>
-        <HorizontalStackLayout
-            Spacing="10"
+
+        <Grid
+    BackgroundColor="Black"
+    >
+            <HorizontalStackLayout>
+            <Button
+             x:Name="openMenu"
+                Text="|||"
+                Clicked="openMenu_Clicked"
+                
+                />
+
+            
+                
+
+                <Border
+            x:Name="noteListMenu"
+             StrokeShape="RoundRectangle 15"
+             IsVisible="False"
+             BackgroundColor="white"
+             Padding="18"
+             HeightRequest="100"
+             WidthRequest="0"
+            
+           
             >
-            
-            <Button
-                  Text="Add Note"
-                  HeightRequest="60"
-                  WidthRequest="200"
-                  HorizontalOptions="End"
-                  Clicked="createNote"
-    />
-            <Button
-               Text="DeleteNote"
-               HeightRequest="60"
-               WidthRequest="200"
-               HorizontalOptions="Start" 
-               Clicked="deleteNote"
-    />
-            <Entry
-                 x:Name="Title_txt"
-    />
-            
+            <StackLayout 
+                      x:Name="OptionsPanel" 
+                      IsVisible="False" >
+                
+                <HorizontalStackLayout
+                         Spacing="10"
+                >
+             <Button
+                Text="Add Note"
+                HeightRequest="60"
+                WidthRequest="200"
+               
+                Clicked="createNote" />
 
-
+           <Button
+                Text="DeleteNote"
+                HeightRequest="60"
+                WidthRequest="200"
+                
+                Clicked="deleteNote"/>
+            <Button
+               x:Name="themeButton"
+                 Text="Light Mode"
+                 Clicked="changeMode"
+                 HorizontalOptions="Start"
+/>
+                        <Entry
+             x:Name="Title_txt"
+                            Placeholder="SKDKS"
+                            />
+                       
+                    </HorizontalStackLayout>
+              </StackLayout>
+        </Border>
+          
         </HorizontalStackLayout>
-        
+        </Grid>
+
     </StackLayout>
+        
 </ContentPage>
     
     

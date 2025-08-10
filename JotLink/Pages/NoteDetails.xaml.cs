@@ -94,7 +94,7 @@ public partial class NoteDetails : ContentPage               ///, IQueryAttribut
 
 
 
-    private async void openMenu_Clicked(object sender, EventArgs e)
+    public async void openMenu_Clicked(object sender, EventArgs e)
     {
         const int targetWidth = 700;
         const int step = 10;

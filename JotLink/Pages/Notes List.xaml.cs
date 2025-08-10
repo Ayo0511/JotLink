@@ -6,7 +6,10 @@ namespace JotLink.Pages;
 public partial class Notes_List : ContentPage
 {
     public ObservableCollection<NoteFE> Notes;   //changeback to debug
-    private NoteFE _selectedNote;  
+    private NoteFE _selectedNote;
+    bool panalOpened = false;
+    bool isAnimating = false;
+
 
     public Notes_List()                  //create backend in same  project 
 	{
@@ -38,7 +41,7 @@ public partial class Notes_List : ContentPage
 
         string link = $"https://jotlink.onrender.com/n/{sharedNote.PublicId}";
         await Clipboard.SetTextAsync(link);
-        await DisplayAlert("Link Copied", "The note link has been copied to your clipboard.", "OK");
+        
 
         SimulateSelection(sharedNote);
     }
@@ -144,7 +147,25 @@ public partial class Notes_List : ContentPage
     private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
     {
         
+        string keyword = e.NewTextValue?.ToLower() ?? "";
 
+        if (string.IsNullOrWhiteSpace(keyword))
+        {
+            
+            OnAppearing(); //reload notes
+            return;
+        }
+
+        // Filter Notes collection in place:
+        var filtered = Notes.Where(note =>
+            (note.Title?.ToLower().Contains(keyword) ?? false) ||
+            (note.Content?.ToLower().Contains(keyword) ?? false)
+        ).ToList();
+
+        Notes.Clear();
+
+        foreach (var note in filtered)
+            Notes.Add(note);
     }
 
 
@@ -223,16 +244,18 @@ public partial class Notes_List : ContentPage
             await DisplayAlert("Error", "Please enter a link.", "OK");
             return;
         }
+        if (Connectivity.NetworkAccess is not NetworkAccess.Internet)
+            await DisplayAlert("No Internet","Please check your internet connection and try again","Ok");
 
-        // Extract the PublicId from the URL (assumes format https://yourdomain.com/n/{publicId})
-        var parts = fullLink.Split('/');
+            // Extract the PublicId from the URL (assumes format https://yourdomain.com/n/{publicId})
+            var parts = fullLink.Split('/');
         var publicId = parts.Last();
 
         var note = await FetchNoteFromLink(publicId);
 
         if (note == null)
         {
-            await DisplayAlert("Not found", "NoteFE not found or invalid link.", "OK");
+            await DisplayAlert("Not found", "Note not found or invalid link.", "OK");
             return;
         }
 
@@ -256,8 +279,47 @@ public partial class Notes_List : ContentPage
         SimulateSelection(note);
     }
 
+   async private void openMenu_Clicked(object sender, EventArgs e)
+    {
+        const int targetWidth = 700;
+        const int step = 10;
+        if (isAnimating)
+            return;
 
-   
+        if (!OptionsPanel.IsVisible && panalOpened == false)   // Open Panel
+        {
+            OptionsPanel.IsVisible = true;
+            noteListMenu.IsVisible = true;
+
+            for (int i = 0; i <= targetWidth; i += step)
+            {
+                noteListMenu.WidthRequest = i;
+                isAnimating = true;
+                await Task.Delay(1);
+            }
+            panalOpened = true;
+            isAnimating = false;
+        }
+
+        else if (panalOpened)                               // Close Panel
+        {
+
+            for (int i = targetWidth; i >= 0; i -= step)
+            {
+                noteListMenu.WidthRequest = i;
+                isAnimating = true;
+                await Task.Delay(1);
+            }
+
+            OptionsPanel.IsVisible = false;
+            noteListMenu.IsVisible = false;
+            panalOpened = false;
+            isAnimating = false;
+        }
+    }
+
+
+
 
     //navigate to main page use
     //Shell.Current.GoToAsync($"//nameof(Notes_List)") 
