@@ -38,11 +38,12 @@ namespace JotLink
             }
             catch (HttpRequestException ex) 
             {
-                var currentPage = Application.Current?.MainPage;
+                var currentPage = Application.Current?.Windows[0].Page;
                 if (currentPage != null && !hasShowedalert)
                 {
                     await currentPage.DisplayAlert("No Internet", "Please check your connection and try again.", "OK");
                     hasShowedalert = true;
+                   Console.WriteLine(ex.ToString());
                 }
                 return null;
 
@@ -67,11 +68,12 @@ namespace JotLink
             }
             catch (HttpRequestException ex) 
             {
-                var currentPage = Application.Current?.MainPage;
+                var currentPage = Application.Current?.Windows[0].Page;
                 if (currentPage != null && !hasShowedalert)
                 {
                     await currentPage.DisplayAlert("No Internet", "Please check your connection and try again.", "OK");
                     hasShowedalert = true;
+                    Console.WriteLine(ex.ToString());
                 }
             }
             return null;
@@ -95,12 +97,13 @@ namespace JotLink
             }
             catch (HttpRequestException ex)
             {
-                var currentPage = Application.Current?.MainPage;
+                var currentPage = Application.Current?.Windows[0].Page;
 
                 if (currentPage != null && !hasShowedalert)
                 {
                     await currentPage.DisplayAlert("No Internet", "Please check your connection and try again.", "OK");
                     hasShowedalert = true;
+                    Console.WriteLine(ex.ToString());
                 }
             }
             return null;
@@ -118,7 +121,7 @@ namespace JotLink
         {
             if (Connectivity.NetworkAccess != NetworkAccess.Internet && !hasShowedalert )
             {
-                var currentPage = Application.Current?.MainPage;
+                var currentPage = Application.Current?.Windows[0].Page;
                 if (currentPage != null)
                 {
                     await currentPage.DisplayAlert("No Internet", "Please check your connection and try again.", "OK");
@@ -128,7 +131,7 @@ namespace JotLink
             return true;
         }
 
-        private void connectivityChanged(object sender, ConnectivityChangedEventArgs e)
+        private void connectivityChanged(object? sender, ConnectivityChangedEventArgs e)
         {
             if (Connectivity.NetworkAccess == NetworkAccess.Internet)
             {

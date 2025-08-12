@@ -4,8 +4,7 @@ namespace JotLink
 {
     public static class NoteMapper
     {
-       static  int test = 1000;
-        static int temmmst = 1000;
+        
 
 
         public static NoteDTO ToDTO(NoteFE noteFE)

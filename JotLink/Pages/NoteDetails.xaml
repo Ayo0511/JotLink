@@ -25,6 +25,7 @@
                 Margin="0"
                 AutoSize="Disabled"
                 HeightRequest="600"
+                
                 />
         
         
@@ -32,6 +33,7 @@
                 Text=""
                 TextColor="White"
                 HeightRequest="10"
+                
                                         
             />
         
@@ -44,6 +46,7 @@
               HorizontalOptions="End"
               Clicked="Return"
 />
+        
         
         
         <HorizontalStackLayout
@@ -60,7 +63,7 @@
             x:Name="optionsFrame"
             StrokeShape="RoundRectangle 15"
             IsVisible="False"
-            BackgroundColor="white"
+            BackgroundColor="White"
             Padding="18"
             HeightRequest="90"
             WidthRequest="0"

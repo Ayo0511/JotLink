@@ -6,7 +6,7 @@ namespace JotLink.Pages;
 public partial class Notes_List : ContentPage
 {
     public ObservableCollection<NoteFE> Notes;   //changeback to debug
-    private NoteFE _selectedNote;
+    private NoteFE? _selectedNote;   //might be becuase its nullable
     bool panalOpened = false;
     bool isAnimating = false;
 
@@ -16,6 +16,7 @@ public partial class Notes_List : ContentPage
         InitializeComponent();   //don                             
         Notes = new ObservableCollection<NoteFE>() ;           
         noteList.ItemsSource = Notes;
+        
 	}
 
     public async void createNote(object sender, EventArgs e)
@@ -28,22 +29,32 @@ public partial class Notes_List : ContentPage
 
         var sharingService = new NoteSharingService();
         var sharedNote = await sharingService.ShareNoteAsync(tempNote);
-
-        if (sharedNote == null)
+        
+        if (Connectivity.NetworkAccess == NetworkAccess.Internet)
         {
-            await DisplayAlert("Error", "Failed to create note.", "OK");
-            return;
+           
+
+            if (sharedNote == null)
+            {
+                await DisplayAlert("Error", "Failed to create note.", "OK");
+                return;
+            }
+
+            Notes.Add(sharedNote);
+
+            await addToDatabase(sharedNote);
+
+            string link = $"https://jotlink.onrender.com/n/{sharedNote.PublicId}";
+            await Clipboard.SetTextAsync(link);
+
+
+            SimulateSelection(sharedNote);
+        }
+        else
+        {
+            await DisplayAlert("Error", "Could not share note online", "Ok");
         }
 
-        Notes.Add(sharedNote);
-
-        await addToDatabase(sharedNote);
-
-        string link = $"https://jotlink.onrender.com/n/{sharedNote.PublicId}";
-        await Clipboard.SetTextAsync(link);
-        
-
-        SimulateSelection(sharedNote);
     }
 
 
@@ -86,6 +97,7 @@ public partial class Notes_List : ContentPage
             PublicId= dto.PublicId
         });
     }
+        sortByLastOpened();
 }
     public void updateNote() 
     {
@@ -136,11 +148,17 @@ public partial class Notes_List : ContentPage
         }            
         
     }
-    
 
-    public void sortByLastOpened() 
-    { 
 
+    public void sortByLastOpened()
+    {
+        var sorted = Notes.OrderByDescending(n => n.LastModified).ToList();
+
+        Notes.Clear();
+        foreach (var note in sorted)
+        {
+            Notes.Add(note);
+        }
     }
 
 
@@ -190,25 +208,29 @@ public partial class Notes_List : ContentPage
 
     private void changeMode(object sender, EventArgs e)
     {
-        var current = Application.Current.UserAppTheme;
+        if (Application.Current is not null)
 
-      
-
-        if (current == AppTheme.Dark)
         {
-            themeButton.Text = "Dark Mode";            
-            Application.Current.UserAppTheme = AppTheme.Light;
-            noteList.BackgroundColor=Colors.White;
+            var current = Application.Current.UserAppTheme;
+
             
-             
-        }
-        else
-        {
-            themeButton.Text = "Light Mode";
-            Application.Current.UserAppTheme = AppTheme.Dark;
-            noteList.BackgroundColor = Colors.Black;
-            Title_txt.TextColor = Colors.Black;
 
+            if (current == AppTheme.Dark)
+            {
+                themeButton.Text = "Dark Mode";
+                Application.Current.UserAppTheme = AppTheme.Light;
+                noteList.BackgroundColor = Colors.White;
+
+
+            }
+            else
+            {
+                themeButton.Text = "Light Mode";
+                Application.Current.UserAppTheme = AppTheme.Dark;
+                noteList.BackgroundColor = Colors.Black;
+                Title_txt.TextColor = Colors.Black;
+
+            }
         }
     }
 
@@ -279,6 +301,10 @@ public partial class Notes_List : ContentPage
         SimulateSelection(note);
     }
 
+
+
+
+
    async private void openMenu_Clicked(object sender, EventArgs e)
     {
         const int targetWidth = 700;
@@ -316,6 +342,44 @@ public partial class Notes_List : ContentPage
             panalOpened = false;
             isAnimating = false;
         }
+    }
+
+    private void Switch_Toggled(object sender, ToggledEventArgs e)
+    {
+        // switchN.BackgroundColor=Colors.BurlyWood;
+        if (Application.Current is not null)
+
+        {
+            var current = Application.Current.UserAppTheme;
+
+
+
+            if (current == AppTheme.Dark)
+            {
+                
+                Application.Current.UserAppTheme = AppTheme.Light;
+                noteList.BackgroundColor = Colors.White;
+                Title_txt.TextColor = Colors.White;
+              
+
+
+            }
+            else
+            {
+                 
+                Application.Current.UserAppTheme = AppTheme.Dark;
+                noteList.BackgroundColor = Colors.Black;
+                Title_txt.TextColor = Colors.Black;
+                
+
+            }
+        }
+    }
+
+    private   void deleteButtontest_Clicked(object sender, EventArgs e)
+    {
+         
+
     }
 
 

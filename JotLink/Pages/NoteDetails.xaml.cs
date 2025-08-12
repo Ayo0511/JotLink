@@ -5,13 +5,13 @@ using Microsoft.Maui.Controls;
 
 namespace JotLink.Pages; 
 
-public partial class NoteDetails : ContentPage               ///, IQueryAttributable
+public partial class NoteDetails : ContentPage               //, IQueryAttributable
 {
-    private NoteFE _note;
+    private NoteFE? _note;
     public static NoteFE? loadedNote;
     bool panalOpened= false;
     bool isAnimating = false;
-    string publicId;
+    string? publicId;
     
    
    
@@ -25,7 +25,11 @@ public partial class NoteDetails : ContentPage               ///, IQueryAttribut
     protected override void OnAppearing()
     {
         base.OnAppearing();
-        publicId = NoteLinkStore.CurrentPublicId;
+        if (NoteLinkStore.CurrentPublicId != null) 
+        {
+            publicId = NoteLinkStore.CurrentPublicId;
+        }
+       
         if (loadedNote != null)
         {
             _note = loadedNote;
@@ -137,34 +141,39 @@ public partial class NoteDetails : ContentPage               ///, IQueryAttribut
 
     private void changeTheme_Clicked(object sender, EventArgs e)
     {
-        var current = Application.Current.UserAppTheme;      
-
-        if (current == AppTheme.Dark)
+         
+        if (Application.Current is not null)
+        
         {
-            changeTheme.Text = "Dark Mode";
-            Application.Current.UserAppTheme = AppTheme.Light;
-            rootLayout.BackgroundColor = Colors.White;
-            ContentEditor.TextColor = Colors.Black;
-            TitleEditor.TextColor = Colors.Black;
+            var current = Application.Current.UserAppTheme;
 
-        }
-        else
-        {
-            changeTheme.Text = "Light Mode";
-            Application.Current.UserAppTheme = AppTheme.Dark;
-            rootLayout.BackgroundColor = Colors.Black;
-            ContentEditor.TextColor = Colors.White;
-            TitleEditor.TextColor = Colors.White;
-           
-            //Title_txt.TextColor = Colors.Black;
+            if (current == AppTheme.Dark)
+            {
+                changeTheme.Text = "Dark Mode";
+                Application.Current.UserAppTheme = AppTheme.Light;
+                rootLayout.BackgroundColor = Colors.White;
+                ContentEditor.TextColor = Colors.Black;
+                TitleEditor.TextColor = Colors.Black;
 
+            }
+            else
+            {
+                changeTheme.Text = "Light Mode";
+                Application.Current.UserAppTheme = AppTheme.Dark;
+                rootLayout.BackgroundColor = Colors.Black;
+                ContentEditor.TextColor = Colors.White;
+                TitleEditor.TextColor = Colors.White;
+
+                //Title_txt.TextColor = Colors.Black;
+
+            }
         }
 
     }
 
     private void ShareNote(object sender, EventArgs e)
     {
-        string link = $"https://jotlink.onrender.com/n/{_note.PublicId}";
+        string link = $"https://jotlink.onrender.com/n/{_note!.PublicId}"; //NULL forgiving operator !!!!
         Clipboard.SetTextAsync(link);
        DisplayAlert("Link Copied", "Link has been copied to your clipboard.", "OK");
 

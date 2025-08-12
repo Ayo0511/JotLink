@@ -16,7 +16,7 @@ namespace JotLink
         public Guid Id { get;  set; } // Unique ID
         public string Title { get; set; } =string.Empty;//Name of the note/page
         public string Content { get; set; }=string.Empty;
-        public string Snippet => Content?.Length > 200 ? Content.Substring(0, 200) + "..." : Content;
+        public string? Snippet => Content?.Length > 200 ? Content.Substring(0, 200) + "..." : Content;
         public DateTime CreatedAt { get; set; }
         public DateTime LastModified { get; set; }
         public string PublicId { get; set; }

@@ -21,16 +21,31 @@
                    MaximumWidthRequest="900"
                   />
             
+            
+            
             <Button Text="Load Note" Clicked="LoadNoteFromLink_Clicked" 
-                    HorizontalOptions="End"/>
+                    HorizontalOptions="End"
+                    
+                    />
+
+           
+
+     <HorizontalStackLayout Spacing="10">
+         
+                <Label Text="Change Theme"
+                       VerticalOptions="Center" />
+                <Switch
+                     x:Name="switchN"
+                     IsToggled="True"
+                     Toggled="Switch_Toggled"/>
+                
+      </HorizontalStackLayout>
+            
+            
         </HorizontalStackLayout>
         <VerticalStackLayout
             Spacing="5"
             >
-
-
-            
-
 
             <SearchBar 
                 Placeholder="Search Notes..."
@@ -45,6 +60,7 @@
         
         <ListView x:Name="noteList"
               BackgroundColor="Black"
+                  
                  
               SeparatorVisibility="Default"
               SeparatorColor="AntiqueWhite"  
@@ -66,7 +82,7 @@
                                   CheckedChanged="CheckBox_CheckedChanged"
                                 
                                 />
-
+                           
 
                             <Label x:Name="titleTXT"                         
                                      Text="{Binding Title}"                               
@@ -84,8 +100,17 @@
                               Text="{Binding Snippet}"
                               TextColor="Gray"
                               FontSize="20" />
-                        
-                        <Label Text="{Binding LastModified, StringFormat='Modified: {0:MM/dd/yyyy HH:mm}'}"
+
+                            <Button
+                                x:Name="deleteButtontest"
+                                BackgroundColor="AntiqueWhite"
+                                Text="delete test"
+                                WidthRequest="150"
+                                HeightRequest="20"
+                                MaximumWidthRequest="200"
+                                Clicked="deleteButtontest_Clicked"
+                                />
+                            <Label Text="{Binding LastModified, StringFormat='Modified: {0:MM/dd/yyyy HH:mm}'}"
                                FontSize="12"
                                TextColor="DarkGray"
                                HorizontalOptions="End"/>
@@ -105,6 +130,7 @@
                 Clicked="openMenu_Clicked"
                 
                 />
+                
 
             
                 
@@ -116,7 +142,7 @@
              BackgroundColor="white"
              Padding="18"
              HeightRequest="100"
-             WidthRequest="0"
+             
             
            
             >
