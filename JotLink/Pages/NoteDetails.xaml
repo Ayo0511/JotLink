@@ -14,7 +14,7 @@
 
 
 
-      
+
         <Editor x:Name="ContentEditor"
                 Text=""
                 BackgroundColor="Transparent"
@@ -27,17 +27,19 @@
                 HeightRequest="600"
                 
                 />
+
+
+        <Border>
+            <Editor x:Name="TitleEditor"
+         Text=""
+         TextColor="White"
+         HeightRequest="10"/>
+        </Border>
+       
         
-        
-        <Editor x:Name="TitleEditor"
-                Text=""
-                TextColor="White"
-                HeightRequest="10"
-                
-                                        
-            />
-        
-        
+       
+
+
         <Button
            
               Text="Return to Notes"
@@ -79,10 +81,14 @@
                                                >
 
                     <Button 
-                           x:Name="temp"        
+                           x:Name="downloadBtn"        
                              Text="Download "
                              FontSize="15"
                              HorizontalOptions="Center"
+                        Clicked="downloadBtn_Clicked"
+                        Released="downloadBtn_Released"
+                        Pressed="downloadBtn_Pressed"
+                       
                                
                                                                    />
                     <Button  

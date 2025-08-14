@@ -1,7 +1,8 @@
-using System;
-using System.IO;
 using Microsoft.Maui;
 using Microsoft.Maui.Controls;
+using System;
+using System.IO;
+//using static Android.Icu.Text.CaseMap;
 
 namespace JotLink.Pages; 
 
@@ -13,6 +14,7 @@ public partial class NoteDetails : ContentPage               //, IQueryAttributa
     bool isAnimating = false;
     string? publicId;
     
+    
    
    
 
@@ -20,6 +22,7 @@ public partial class NoteDetails : ContentPage               //, IQueryAttributa
     {
        
         InitializeComponent();
+       
     }
 
     protected override void OnAppearing()
@@ -37,6 +40,10 @@ public partial class NoteDetails : ContentPage               //, IQueryAttributa
             TitleEditor.Text = _note.Title;
             ContentEditor.Text = _note.Content;
         }
+        
+       ApplyCurrentTheme();
+
+
     }
 
 
@@ -170,6 +177,36 @@ public partial class NoteDetails : ContentPage               //, IQueryAttributa
         }
 
     }
+    private void ApplyCurrentTheme()
+    {
+        if (Application.Current is not null)
+
+        {
+            var current = Application.Current.UserAppTheme;
+
+            if (current == AppTheme.Dark)
+            {
+                changeTheme.Text = "Light Mode";
+                Application.Current.UserAppTheme = AppTheme.Dark;
+                rootLayout.BackgroundColor = Colors.Black;
+                ContentEditor.TextColor = Colors.White;
+                TitleEditor.TextColor = Colors.White;
+               
+
+            }
+            else if (current == AppTheme.Light) 
+            {
+                changeTheme.Text = "Dark Mode";
+                Application.Current.UserAppTheme = AppTheme.Light;
+                rootLayout.BackgroundColor = Colors.White;
+                ContentEditor.TextColor = Colors.Black;
+                TitleEditor.TextColor = Colors.Black;
+
+                //Title_txt.TextColor = Colors.Black;
+
+            }
+        }
+    }
 
     private void ShareNote(object sender, EventArgs e)
     {
@@ -179,6 +216,26 @@ public partial class NoteDetails : ContentPage               //, IQueryAttributa
 
     }
 
+    private void downloadBtn_Clicked(object sender, EventArgs e)
+    {
+        
+        string fileName = $"{_note.Title.Replace(" ", "_")}.txt";
+        string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+        string filePath = Path.Combine(desktopPath, fileName);
+
+        File.WriteAllText(filePath, _note.Content);
+         
+    }
+
+    private void downloadBtn_Released(object sender, EventArgs e)
+    {
+        downloadBtn.BackgroundColor = Colors.MediumPurple;
+    }
+
+    private void downloadBtn_Pressed(object sender, EventArgs e)
+    {
+        downloadBtn.BackgroundColor = Colors.Purple;
+    }
 }
 
 

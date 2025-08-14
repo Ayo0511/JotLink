@@ -4,189 +4,196 @@
              x:Class="JotLink.Pages.Notes_List"
              Title="Notes List"
              NavigationPage.HasNavigationBar="False">
-    
-    
-    
-    
+
+
+    <ContentPage.Resources>
+        <Style x:Key="TitleLabelStyle" TargetType="Label">
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="FontSize" Value="20" />
+            <Style.Triggers>
+                <DataTrigger TargetType="Label" Binding="{Binding Source={x:Static Application.Current}, Path=UserAppTheme}" Value="Dark">
+                    <Setter Property="TextColor" Value="White" />
+                </DataTrigger>
+                <DataTrigger TargetType="Label" Binding="{Binding Source={x:Static Application.Current}, Path=UserAppTheme}" Value="Light">
+                    <Setter Property="TextColor" Value="Black" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </ContentPage.Resources>
+
     <StackLayout
-        x:Name="MainStack"
-         Padding="5"
+        x:Name="MainStack">
         
-        >
-        <HorizontalStackLayout
-            Spacing="5"
-            >
-            <Entry x:Name="LinkEntry" Placeholder="Paste note link here" 
-                   WidthRequest="700"
-                   MaximumWidthRequest="900"
-                  />
-            
-            
-            
-            <Button Text="Load Note" Clicked="LoadNoteFromLink_Clicked" 
-                    HorizontalOptions="End"
-                    
+        <Grid
+             ColumnDefinitions="*,Auto"
+             ColumnSpacing="5"
+            VerticalOptions="Start">
+
+            <HorizontalStackLayout
+                Grid.Column="0" >
+
+                <Border Padding="2">
+                    <Entry x:Name="LinkEntry" 
+                     Placeholder="Paste note link here" 
+                     WidthRequest="700"
+                     MaximumWidthRequest="900"
+                     Grid.Column="0"
+                     />
+                </Border>
+
+                <Button 
+                    x:Name="loadNoteBtn"
+                    Text="Load Note" 
+                    Clicked="LoadNoteFromLink_Clicked" 
+                    Grid.Column="1"
+                    Pressed="loadNoteBtn_Pressed"
+                    Released="loadNoteBtn_Released"
                     />
 
-           
+            </HorizontalStackLayout>
 
-     <HorizontalStackLayout Spacing="10">
-         
+            <HorizontalStackLayout
+                Grid.Column="1"
+                Spacing="5"
+                HorizontalOptions="End"
+                >
                 <Label Text="Change Theme"
-                       VerticalOptions="Center" />
+                       VerticalOptions="Center"                          
+                       HorizontalOptions="End"        
+           />
+
                 <Switch
-                     x:Name="switchN"
-                     IsToggled="True"
-                     Toggled="Switch_Toggled"/>
-                
-      </HorizontalStackLayout>
-            
-            
-        </HorizontalStackLayout>
+                    x:Name="switchN"
+                      IsToggled="False"
+                      VerticalOptions="Center"    
+                      Toggled="Switch_Toggled"                    
+                      HorizontalOptions="End"
+        />
+            </HorizontalStackLayout>
+        </Grid>
+
+
         <VerticalStackLayout
-            Spacing="5"
-            >
-
-            <SearchBar 
-                Placeholder="Search Notes..."
-                TextChanged="SearchBar_TextChanged"                                             
-                />
-
-          
-             
+            Spacing="5">
+            <Border Padding="2">
+                <SearchBar 
+                     Placeholder="Search Notes..."
+                     TextChanged="SearchBar_TextChanged" />
+            </Border>
         </VerticalStackLayout>
-        
-         
-        
+
+
         <ListView x:Name="noteList"
-              BackgroundColor="Black"
-                  
-                 
+              BackgroundColor="Black"  
               SeparatorVisibility="Default"
               SeparatorColor="AntiqueWhite"  
               ItemSelected="noteList_ItemSelected"
-                 
-              >
+              SelectionMode="Single">
+                  
 
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <ViewCell>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Border Padding="5" >
+                            <StackLayout Padding="50">
+                                <Label x:Name="titleTXT"                         
+                                         Text="{Binding Title}"
+                                         Style="{StaticResource TitleLabelStyle}" />
 
+                                <Label 
+                                  x:Name="txt_snippet"
+                                    Text="{Binding Snippet}"
+                                    TextColor="Gray"
+                                    FontSize="20" />
 
-                        <StackLayout Padding="50"
-
-                                >
-
-                            <CheckBox
-                                x:Name="noteCheckBox"                              
-                                  CheckedChanged="CheckBox_CheckedChanged"
                                 
-                                />
-                           
 
-                            <Label x:Name="titleTXT"                         
-                                     Text="{Binding Title}"                               
-                                     FontAttributes="Bold"
-                                     TextColor="White"
-                                     FontSize="20" >
-                            
-
-                            
-                        </Label>
-
-
-                        <Label 
-                            x:Name="txt_snippet"
-                              Text="{Binding Snippet}"
-                              TextColor="Gray"
-                              FontSize="20" />
-
-                            <Button
-                                x:Name="deleteButtontest"
-                                BackgroundColor="AntiqueWhite"
-                                Text="delete test"
-                                WidthRequest="150"
-                                HeightRequest="20"
-                                MaximumWidthRequest="200"
-                                Clicked="deleteButtontest_Clicked"
-                                />
-                            <Label Text="{Binding LastModified, StringFormat='Modified: {0:MM/dd/yyyy HH:mm}'}"
+                                <Label Text="{Binding LastModified, StringFormat='Modified: {0:MM/dd/yyyy HH:mm}'}"
                                FontSize="12"
                                TextColor="DarkGray"
-                               HorizontalOptions="End"/>
-                    </StackLayout>
-                </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+                               HorizontalOptions="End"
+                               Style="{StaticResource TitleLabelStyle}" 
+                                       />
 
+                            </StackLayout>
+                        </Border>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+       
         <Grid
-    BackgroundColor="Black"
+            x:Name="grid"
+           BackgroundColor="Black"
+            
     >
             <HorizontalStackLayout>
-            <Button
-             x:Name="openMenu"
+                <Button
+              x:Name="openMenu"
                 Text="|||"
                 Clicked="openMenu_Clicked"
-                
+                Pressed="openMenu_Pressed"
+                Released="openMenu_Released"
+                HorizontalOptions="Center"                              
                 />
-                
 
-            
-                
-
-                <Border
+         <Border
             x:Name="noteListMenu"
              StrokeShape="RoundRectangle 15"
              IsVisible="False"
              BackgroundColor="white"
-             Padding="18"
-             HeightRequest="100"
-             
-            
-           
+             Padding="20"        
             >
-            <StackLayout 
-                      x:Name="OptionsPanel" 
-                      IsVisible="False" >
-                
-                <HorizontalStackLayout
-                         Spacing="10"
+
+      <StackLayout 
+           x:Name="OptionsPanel" 
+             IsVisible="False" >
+
+          <HorizontalStackLayout
+              Spacing="10"
                 >
              <Button
+                 x:Name="addNoteBtn"
                 Text="Add Note"
-                HeightRequest="60"
-                WidthRequest="200"
-               
-                Clicked="createNote" />
+                HeightRequest="20"
+                WidthRequest="200"              
+                Clicked="createNote" 
+                 Pressed="addNoteBtn_Pressed"
+                 Released="addNoteBtn_Released"
+                 
+                 
+                 />
 
-           <Button
+             <Button
+                 x:Name="delNoteBtn"
                 Text="DeleteNote"
-                HeightRequest="60"
-                WidthRequest="200"
-                
-                Clicked="deleteNote"/>
-            <Button
-               x:Name="themeButton"
-                 Text="Light Mode"
-                 Clicked="changeMode"
-                 HorizontalOptions="Start"
-/>
-                        <Entry
-             x:Name="Title_txt"
-                            Placeholder="SKDKS"
-                            />
-                       
-                    </HorizontalStackLayout>
-              </StackLayout>
-        </Border>
-          
-        </HorizontalStackLayout>
-        </Grid>
+                HeightRequest="20"
+                WidthRequest="200"                
+                Clicked="deleteNote"
+                 Pressed="delNoteBtn_Pressed"
+                 Released="delNoteBtn_Released"
+                 />
 
+
+      <Border Padding="2">
+             <Entry 
+                 x:Name="Title_txt"
+                   Placeholder="NoteTitle...." 
+                   WidthRequest="175"
+                   TextColor="Black"
+                 
+                 />
+       </Border>
+
+
+                        </HorizontalStackLayout>
+                    </StackLayout>
+                </Border>
+            </HorizontalStackLayout>
+        </Grid>
     </StackLayout>
-        
 </ContentPage>
-    
-    
-   
+
+
+     

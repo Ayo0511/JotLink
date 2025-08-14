@@ -5,13 +5,14 @@ namespace JotLink.Pages;
 
 public partial class Notes_List : ContentPage
 {
-    public ObservableCollection<NoteFE> Notes;   //changeback to debug
+    public ObservableCollection<NoteFE> Notes;   
     private NoteFE? _selectedNote;   //might be becuase its nullable
     bool panalOpened = false;
     bool isAnimating = false;
+     
 
 
-    public Notes_List()                  //create backend in same  project 
+    public Notes_List()                 
 	{
         InitializeComponent();   //don                             
         Notes = new ObservableCollection<NoteFE>() ;           
@@ -22,8 +23,8 @@ public partial class Notes_List : ContentPage
     public async void createNote(object sender, EventArgs e)
     {
         var tempNote = new NoteFE
-        {
-            Title = "Unnamed NoteFE",
+        {      
+         Title = !string.IsNullOrEmpty(Title_txt.Text) ? Title_txt.Text: "Unnamed Note",
             Content = "" // prevent null
         };
 
@@ -31,30 +32,22 @@ public partial class Notes_List : ContentPage
         var sharedNote = await sharingService.ShareNoteAsync(tempNote);
         
         if (Connectivity.NetworkAccess == NetworkAccess.Internet)
-        {
-           
-
+        {           
             if (sharedNote == null)
             {
                 await DisplayAlert("Error", "Failed to create note.", "OK");
                 return;
             }
-
             Notes.Add(sharedNote);
-
             await addToDatabase(sharedNote);
-
             string link = $"https://jotlink.onrender.com/n/{sharedNote.PublicId}";
             await Clipboard.SetTextAsync(link);
-
-
             SimulateSelection(sharedNote);
         }
         else
         {
             await DisplayAlert("Error", "Could not share note online", "Ok");
         }
-
     }
 
 
@@ -62,7 +55,7 @@ public partial class Notes_List : ContentPage
     {
         var client = new HttpClient
         {
-            BaseAddress = new Uri("https://jotlink.onrender.com/")// must match backend
+            BaseAddress = new Uri("https://jotlink.onrender.com/")// must match backend HOST
         };
 
         var response = await client.GetAsync($"n/{publicId}");
@@ -95,6 +88,8 @@ public partial class Notes_List : ContentPage
             LastModified = dto.LastModified,
             Id = dto.Id,
             PublicId= dto.PublicId
+           
+
         });
     }
         sortByLastOpened();
@@ -139,8 +134,10 @@ public partial class Notes_List : ContentPage
         {
             NoteLinkStore.CurrentPublicId = selectedNote.PublicId;
             _selectedNote = selectedNote;
-            noteList.SelectedItem=null;
 
+           // noteList.SelectedItem=null;
+            
+            
             NoteDetails.loadedNote = selectedNote;
             Shell.Current.GoToAsync(nameof(NoteDetails));
 
@@ -199,40 +196,13 @@ public partial class Notes_List : ContentPage
             CreatedAt = note.CreatedAt,
             LastModified = note.LastModified,
             PublicId= note.PublicId
+           
+
         };
 
         await connection.InsertOrReplaceAsync(dto);
     }
     
-
-
-    private void changeMode(object sender, EventArgs e)
-    {
-        if (Application.Current is not null)
-
-        {
-            var current = Application.Current.UserAppTheme;
-
-            
-
-            if (current == AppTheme.Dark)
-            {
-                themeButton.Text = "Dark Mode";
-                Application.Current.UserAppTheme = AppTheme.Light;
-                noteList.BackgroundColor = Colors.White;
-
-
-            }
-            else
-            {
-                themeButton.Text = "Light Mode";
-                Application.Current.UserAppTheme = AppTheme.Dark;
-                noteList.BackgroundColor = Colors.Black;
-                Title_txt.TextColor = Colors.Black;
-
-            }
-        }
-    }
 
 
 
@@ -244,20 +214,11 @@ public partial class Notes_List : ContentPage
         if (noteToSelect == null) return;
 
         NoteDetails.loadedNote = noteToSelect;
+        
         await Shell.Current.GoToAsync(nameof(NoteDetails));
     }
 
-    private void CheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
-    {
-        if (sender is CheckBox checkbox && checkbox.BindingContext is NoteFE item) 
-        {
-            var note = Notes;
-            int index = note.IndexOf(item);
-            Notes.Move(index, 0);
-            checkbox.IsVisible = false;           
-        }
-    }
-
+   
     private async void LoadNoteFromLink_Clicked(object sender, EventArgs e)
     {
         var fullLink = LinkEntry.Text?.Trim();
@@ -270,8 +231,9 @@ public partial class Notes_List : ContentPage
             await DisplayAlert("No Internet","Please check your internet connection and try again","Ok");
 
             // Extract the PublicId from the URL (assumes format https://yourdomain.com/n/{publicId})
+           
             var parts = fullLink.Split('/');
-        var publicId = parts.Last();
+            var publicId = parts.Last();
 
         var note = await FetchNoteFromLink(publicId);
 
@@ -293,11 +255,9 @@ public partial class Notes_List : ContentPage
         {
             // Add new note
             Notes.Add(note);
-        }
-
-        // Optionally save to local DB here as well
-
-       await addToDatabase(note);
+        }   
+        
+        await addToDatabase(note);
         SimulateSelection(note);
     }
 
@@ -343,43 +303,84 @@ public partial class Notes_List : ContentPage
             isAnimating = false;
         }
     }
+    private void openMenu_Pressed(object sender, EventArgs e)
+    {
+        openMenu.BackgroundColor = Colors.Purple;
+    }
+
 
     private void Switch_Toggled(object sender, ToggledEventArgs e)
     {
-        // switchN.BackgroundColor=Colors.BurlyWood;
         if (Application.Current is not null)
-
         {
+            var Switch = (Switch)sender;
             var current = Application.Current.UserAppTheme;
-
-
-
-            if (current == AppTheme.Dark)
+            if (Switch.IsToggled) 
             {
                 
                 Application.Current.UserAppTheme = AppTheme.Light;
                 noteList.BackgroundColor = Colors.White;
                 Title_txt.TextColor = Colors.White;
-              
-
-
+                grid.BackgroundColor = Colors.White;
+                switchN.OnColor = Colors.MediumPurple;
+                loadNoteBtn.BackgroundColor = Colors.MediumPurple;
+                openMenu.BackgroundColor = Colors.MediumPurple;
+                addNoteBtn.BackgroundColor = Colors.MediumPurple;
+                delNoteBtn.Background = Colors.MediumPurple;
             }
-            else
-            {
-                 
+            else  
+            {  
                 Application.Current.UserAppTheme = AppTheme.Dark;
                 noteList.BackgroundColor = Colors.Black;
                 Title_txt.TextColor = Colors.Black;
-                
-
+                grid.BackgroundColor = Colors.Black;
             }
+
+             
         }
     }
+
 
     private   void deleteButtontest_Clicked(object sender, EventArgs e)
     {
          
 
+    }
+
+    private void openMenu_Released(object sender, EventArgs e)
+    {
+        openMenu.BackgroundColor = Colors.MediumPurple;
+        DisplayAlert("color",$"{loadNoteBtn.BackgroundColor}","ok");
+    }
+
+    private void loadNoteBtn_Pressed(object sender, EventArgs e)
+    {
+        loadNoteBtn.BackgroundColor= Colors.Purple;
+    }
+
+    private void loadNoteBtn_Released(object sender, EventArgs e)
+    {
+        loadNoteBtn.BackgroundColor = Colors.MediumPurple;
+    }
+
+    private void addNoteBtn_Pressed(object sender, EventArgs e)
+    {
+       addNoteBtn.BackgroundColor = Colors.Purple;
+    }
+
+    private void addNoteBtn_Released(object sender, EventArgs e)
+    {
+        addNoteBtn.BackgroundColor = Colors.MediumPurple;
+    }
+
+    private void delNoteBtn_Pressed(object sender, EventArgs e)
+    {
+        delNoteBtn.Background = Colors.Purple;
+    }
+
+    private void delNoteBtn_Released(object sender, EventArgs e)
+    {
+        delNoteBtn.Background = Colors.MediumPurple;
     }
 
 

@@ -27,7 +27,7 @@ namespace JotLink.BackEnd.Controllers
 
             Notes[note.Id] = note;
             NotesByPublicId[note.PublicId] = note;
-
+            
             return Ok(ToDTO(note));
         }
 
@@ -77,7 +77,7 @@ namespace JotLink.BackEnd.Controllers
         }
     }
 
-    public class Note
+  /*  public class Note
     {
         public Guid Id { get; set; }
         public string Title { get; set; } = "";
@@ -85,5 +85,5 @@ namespace JotLink.BackEnd.Controllers
         public DateTime CreatedAt { get; set; }
         public DateTime LastModified { get; set; }
         public string PublicId { get; set; } = "";
-    }
+    }*/
 }
