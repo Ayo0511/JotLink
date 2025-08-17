@@ -19,10 +19,8 @@ public partial class NoteDetails : ContentPage               //, IQueryAttributa
    
 
     public NoteDetails()
-    {
-       
-        InitializeComponent();
-       
+    {      
+        InitializeComponent();    
     }
 
     protected override void OnAppearing()
@@ -40,10 +38,8 @@ public partial class NoteDetails : ContentPage               //, IQueryAttributa
             TitleEditor.Text = _note.Title;
             ContentEditor.Text = _note.Content;
         }
-        
+        setColor();
        ApplyCurrentTheme();
-
-
     }
 
 
@@ -62,7 +58,6 @@ public partial class NoteDetails : ContentPage               //, IQueryAttributa
     public async void Return(object sender, EventArgs e)
     {
       
-
             if (_note == null) return;
 
             _note.Title = TitleEditor.Text;
@@ -97,7 +92,7 @@ public partial class NoteDetails : ContentPage               //, IQueryAttributa
             {
                 _note = updatedNote; // update local note with server response if needed
             }
-
+         
             await Shell.Current.GoToAsync("..");
         }
        
@@ -146,67 +141,29 @@ public partial class NoteDetails : ContentPage               //, IQueryAttributa
 
 
 
-    private void changeTheme_Clicked(object sender, EventArgs e)
-    {
-         
-        if (Application.Current is not null)
-        
-        {
-            var current = Application.Current.UserAppTheme;
-
-            if (current == AppTheme.Dark)
-            {
-                changeTheme.Text = "Dark Mode";
-                Application.Current.UserAppTheme = AppTheme.Light;
-                rootLayout.BackgroundColor = Colors.White;
-                ContentEditor.TextColor = Colors.Black;
-                TitleEditor.TextColor = Colors.Black;
-
-            }
-            else
-            {
-                changeTheme.Text = "Light Mode";
-                Application.Current.UserAppTheme = AppTheme.Dark;
-                rootLayout.BackgroundColor = Colors.Black;
-                ContentEditor.TextColor = Colors.White;
-                TitleEditor.TextColor = Colors.White;
-
-                //Title_txt.TextColor = Colors.Black;
-
-            }
-        }
-
-    }
+  
     private void ApplyCurrentTheme()
     {
         if (Application.Current is not null)
-
         {
             var current = Application.Current.UserAppTheme;
-
             if (current == AppTheme.Dark)
-            {
-                changeTheme.Text = "Light Mode";
+            {            
                 Application.Current.UserAppTheme = AppTheme.Dark;
                 rootLayout.BackgroundColor = Colors.Black;
                 ContentEditor.TextColor = Colors.White;
-                TitleEditor.TextColor = Colors.White;
-               
-
+                TitleEditor.TextColor = Colors.White;              
             }
             else if (current == AppTheme.Light) 
-            {
-                changeTheme.Text = "Dark Mode";
+            {         
                 Application.Current.UserAppTheme = AppTheme.Light;
                 rootLayout.BackgroundColor = Colors.White;
                 ContentEditor.TextColor = Colors.Black;
                 TitleEditor.TextColor = Colors.Black;
-
-                //Title_txt.TextColor = Colors.Black;
-
             }
         }
     }
+
 
     private void ShareNote(object sender, EventArgs e)
     {
@@ -217,16 +174,45 @@ public partial class NoteDetails : ContentPage               //, IQueryAttributa
     }
 
     private void downloadBtn_Clicked(object sender, EventArgs e)
-    {
-        
-        string fileName = $"{_note.Title.Replace(" ", "_")}.txt";
+    {       
+        string fileName = $"{_note?.Title.Replace(" ", "_")}.txt";
         string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
         string filePath = Path.Combine(desktopPath, fileName);
-
-        File.WriteAllText(filePath, _note.Content);
-         
+        File.WriteAllText(filePath, _note?.Content);
+        DisplayAlert("Downloaded", "Note Download Completed", "Okay");       
     }
 
+   
+
+
+    public void setColor()
+    {
+        openMenu.BackgroundColor = Colors.MediumPurple;
+        downloadBtn.BackgroundColor = Colors.MediumPurple;
+        shareNoteBtn.Background = Colors.MediumPurple;
+        returnBtn.BackgroundColor = Colors.MediumPurple;
+    }
+
+    #region
+    private void shareNoteBtn_Pressed(object sender, EventArgs e)
+    {
+        shareNoteBtn.Background = Colors.Purple;
+    }
+
+    private void shareNoteBtn_Released(object sender, EventArgs e)
+    {
+        shareNoteBtn.Background = Colors.MediumPurple;
+    }
+
+    private void returnBtn_Pressed(object sender, EventArgs e)
+    {
+        returnBtn.BackgroundColor = Colors.Purple;
+    }
+
+    private void returnBtn_Released(object sender, EventArgs e)
+    {
+        returnBtn.BackgroundColor = Colors.MediumPurple;
+    }
     private void downloadBtn_Released(object sender, EventArgs e)
     {
         downloadBtn.BackgroundColor = Colors.MediumPurple;
@@ -236,6 +222,18 @@ public partial class NoteDetails : ContentPage               //, IQueryAttributa
     {
         downloadBtn.BackgroundColor = Colors.Purple;
     }
+
+    private void openMenu_Pressed(object sender, EventArgs e)
+    {
+        openMenu.BackgroundColor = Colors.Purple;
+    }
+
+    private void openMenu_Released(object sender, EventArgs e)
+    {
+        openMenu.BackgroundColor = Colors.MediumPurple;
+    }
+
+    #endregion  
 }
 
 

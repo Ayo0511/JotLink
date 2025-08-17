@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using System.Net.Http.Json;
+ 
 
 namespace JotLink.Pages;
 
@@ -9,7 +10,7 @@ public partial class Notes_List : ContentPage
     private NoteFE? _selectedNote;   //might be becuase its nullable
     bool panalOpened = false;
     bool isAnimating = false;
-     
+ 
 
 
     public Notes_List()                 
@@ -17,7 +18,10 @@ public partial class Notes_List : ContentPage
         InitializeComponent();   //don                             
         Notes = new ObservableCollection<NoteFE>() ;           
         noteList.ItemsSource = Notes;
-        
+        bool isLight = Preferences.Get("Theme", "Light")=="Light";
+        switchN.IsToggled=isLight;
+        ApplyTheme(isLight);
+       
 	}
 
     public async void createNote(object sender, EventArgs e)
@@ -55,7 +59,7 @@ public partial class Notes_List : ContentPage
     {
         var client = new HttpClient
         {
-            BaseAddress = new Uri("https://jotlink.onrender.com/")// must match backend HOST
+            BaseAddress = new Uri("https://jotlink.onrender.com/") 
         };
 
         var response = await client.GetAsync($"n/{publicId}");
@@ -70,9 +74,9 @@ public partial class Notes_List : ContentPage
 
     protected override async void OnAppearing()
  {
-    base.OnAppearing();
-
-    Notes.Clear();
+        base.OnAppearing();
+        Notes.Clear();
+        
 
     var connection = new SqLiteConnection().CreateConnection();
     await connection.CreateTableAsync<NotesDTO>();
@@ -94,6 +98,7 @@ public partial class Notes_List : ContentPage
     }
         sortByLastOpened();
 }
+
     public void updateNote() 
     {
         noteList.ItemsSource = null;
@@ -180,7 +185,9 @@ public partial class Notes_List : ContentPage
         Notes.Clear();
 
         foreach (var note in filtered)
+        {
             Notes.Add(note);
+        }
     }
 
 
@@ -303,21 +310,26 @@ public partial class Notes_List : ContentPage
             isAnimating = false;
         }
     }
-    private void openMenu_Pressed(object sender, EventArgs e)
-    {
-        openMenu.BackgroundColor = Colors.Purple;
-    }
+
+
+
+   
 
 
     private void Switch_Toggled(object sender, ToggledEventArgs e)
     {
+        ApplyTheme(e.Value);//returns bool 
+    }
+
+
+
+    private void ApplyTheme(bool isLight)
+    {
         if (Application.Current is not null)
-        {
-            var Switch = (Switch)sender;
-            var current = Application.Current.UserAppTheme;
-            if (Switch.IsToggled) 
+        {          
+            if (isLight==true)
             {
-                
+                Preferences.Set("Theme", "Light");
                 Application.Current.UserAppTheme = AppTheme.Light;
                 noteList.BackgroundColor = Colors.White;
                 Title_txt.TextColor = Colors.White;
@@ -328,29 +340,28 @@ public partial class Notes_List : ContentPage
                 addNoteBtn.BackgroundColor = Colors.MediumPurple;
                 delNoteBtn.Background = Colors.MediumPurple;
             }
-            else  
-            {  
+            else
+            {
+                Preferences.Set("Theme", "Dark");
                 Application.Current.UserAppTheme = AppTheme.Dark;
                 noteList.BackgroundColor = Colors.Black;
                 Title_txt.TextColor = Colors.Black;
                 grid.BackgroundColor = Colors.Black;
             }
-
-             
         }
     }
 
-
-    private   void deleteButtontest_Clicked(object sender, EventArgs e)
-    {
-         
-
-    }
-
+   
+    #region
     private void openMenu_Released(object sender, EventArgs e)
     {
         openMenu.BackgroundColor = Colors.MediumPurple;
-        DisplayAlert("color",$"{loadNoteBtn.BackgroundColor}","ok");
+        
+    }
+
+    private void openMenu_Pressed(object sender, EventArgs e)
+    {
+        openMenu.BackgroundColor = Colors.Purple;
     }
 
     private void loadNoteBtn_Pressed(object sender, EventArgs e)
@@ -384,11 +395,9 @@ public partial class Notes_List : ContentPage
     }
 
 
+    #endregion 
 
-
-    //navigate to main page use
-    //Shell.Current.GoToAsync($"//nameof(Notes_List)") 
-    //Shell.Current.GoToAsync(nameof(NoteDetails));
+     
 }
 
 
@@ -407,7 +416,9 @@ public static class NoteLinkStore
 
 
 
-
+//navigate to main page use
+//Shell.Current.GoToAsync($"//nameof(Notes_List)") 
+//Shell.Current.GoToAsync(nameof(NoteDetails));
 
 
 

@@ -9,44 +9,44 @@
 
     <VerticalStackLayout 
         x:Name="rootLayout"
-                 Padding="20" 
-                 Spacing="20">
+                Padding="20" 
+                Spacing="20">
 
-
-
-
-        <Editor x:Name="ContentEditor"
-                Text=""
-                BackgroundColor="Transparent"
-                TextColor="White"
-                FontSize="18"
-                Placeholder="Start typing..."
-                PlaceholderColor="Gray"
-                Margin="0"
-                AutoSize="Disabled"
-                HeightRequest="600"
-                
-                />
 
 
         <Border>
-            <Editor x:Name="TitleEditor"
-         Text=""
-         TextColor="White"
-         HeightRequest="10"/>
+            <Editor 
+                x:Name="ContentEditor"
+                  Text=""
+                  BackgroundColor="Transparent"
+                  TextColor="White"
+                  FontSize="18"
+                  Placeholder="Start typing..."
+                  PlaceholderColor="Gray"
+                  Margin="0"
+                  AutoSize="Disabled"
+                  HeightRequest="600"/>
         </Border>
-       
+
+
+
+        <Border>
+            <Editor 
+                x:Name="TitleEditor"
+                  Text=""
+                  TextColor="White"
+                  HeightRequest="10"/>
+        </Border>
         
-       
-
-
         <Button
-           
+            x:Name="returnBtn"
               Text="Return to Notes"
               HeightRequest="60"
               WidthRequest="200"
               HorizontalOptions="End"
               Clicked="Return"
+              Pressed="returnBtn_Pressed"
+              Released="returnBtn_Released"
 />
         
         
@@ -60,6 +60,8 @@
                     Text="|||"
                     HorizontalOptions="Start"
                     Clicked="openMenu_Clicked"  
+                    Pressed="openMenu_Pressed"
+                    Released="openMenu_Released"
     />
             <Border
             x:Name="optionsFrame"
@@ -72,54 +74,39 @@
 
             >
             <StackLayout x:Name="OptionsPanel" 
-                                 IsVisible="False" 
-                                                               >
+                                 IsVisible="False" >
 
                 <HorizontalStackLayout 
-                               Spacing="10"
-                
-                                               >
+                               Spacing="10" >
 
                     <Button 
                            x:Name="downloadBtn"        
                              Text="Download "
                              FontSize="15"
                              HorizontalOptions="Center"
-                        Clicked="downloadBtn_Clicked"
-                        Released="downloadBtn_Released"
-                        Pressed="downloadBtn_Pressed"
-                       
-                               
-                                                                   />
+                             Clicked="downloadBtn_Clicked"
+                             Released="downloadBtn_Released"
+                             Pressed="downloadBtn_Pressed"  />
+                    
+                    
                     <Button  
+                        x:Name="shareNoteBtn"
                            Text="Share Note" 
                            FontSize="15"   
                            HorizontalOptions="Center"
-                        Clicked="ShareNote"
-                                                           />
+                           Clicked="ShareNote"
+                           Pressed="shareNoteBtn_Pressed"
+                           Released="shareNoteBtn_Released"/>
                     
-                    <Button
-                        x:Name="changeTheme"
-                          Text="Light Mode"
-                          FontSize="15"
-                          HorizontalOptions="Center"
-                          Clicked="changeTheme_Clicked"
-                        
-                        />
+                    
                     <Button
                         Text="Bold"
                         FontAttributes="Bold"
                         
                         />
-                   <Button
+                  <Button
                         Text="Italic"
-                        FontAttributes="Italic"
- 
-     />
-                    
-                      
-                    
-
+                        FontAttributes="Italic"/>
 
                     </HorizontalStackLayout>
             </StackLayout>
