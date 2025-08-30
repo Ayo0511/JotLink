@@ -2,7 +2,7 @@ using Microsoft.Maui;
 using Microsoft.Maui.Controls;
 using System;
 using System.IO;
-//using static Android.Icu.Text.CaseMap;
+ 
 
 namespace JotLink.Pages; 
 
@@ -57,9 +57,11 @@ public partial class NoteDetails : ContentPage               //, IQueryAttributa
 
     public async void Return(object sender, EventArgs e)
     {
-      
-            if (_note == null) return;
 
+        if (_note == null) return;
+        try
+        {
+            progressIndicator.IsVisible = true;
             _note.Title = TitleEditor.Text;
             _note.Content = ContentEditor.Text;
             _note.LastModified = DateTime.Now;
@@ -76,24 +78,36 @@ public partial class NoteDetails : ContentPage               //, IQueryAttributa
                 LastModified = _note.LastModified,
                 PublicId = _note.PublicId
             };
-
-            await connection.UpdateAsync(dto);
-
-            // Save remotely (update backend)
-            var sharingService = new NoteSharingService();
-            var updatedNote = await sharingService.UpdateNoteAsync(_note);
-            if (updatedNote == null) { updatedNote = await sharingService.ShareNoteAsync(_note); }
-
-            if (updatedNote == null)
+            if (dto.Content.Length < 5000)
             {
-                await DisplayAlert("Error", "Failed to update note on server.", "OK");
+                await connection.UpdateAsync(dto);
+               
+                // Save remotely (update backend)
+                var sharingService = new NoteSharingService();
+                var updatedNote = await sharingService.UpdateNoteAsync(_note);
+                if (updatedNote == null) { updatedNote = await sharingService.ShareNoteAsync(_note); }
+
+                if (updatedNote == null)
+                {
+                    await DisplayAlert("Error", "Failed to update note on server.", "OK");
+                }
+                else
+                {
+                    _note = updatedNote; // update local note with server response if needed
+                }
+
+                await Shell.Current.GoToAsync("..");
             }
-            else
+            else if (dto.Content.Length > 5000)
             {
-                _note = updatedNote; // update local note with server response if needed
+                await DisplayAlert("Content Too Long",
+                                   "Notes cannot exceed 5000 characters. Please shorten your note.","OK");
+
             }
-         
-            await Shell.Current.GoToAsync("..");
+        }
+       
+        finally { progressIndicator.IsVisible = false; }
+    
         }
        
      
@@ -169,7 +183,7 @@ public partial class NoteDetails : ContentPage               //, IQueryAttributa
     {
         string link = $"https://jotlink.onrender.com/n/{_note!.PublicId}"; //NULL forgiving operator !!!!
         Clipboard.SetTextAsync(link);
-       DisplayAlert("Link Copied", "Link has been copied to your clipboard.", "OK");
+        DisplayAlert("Link Copied", "Link has been copied to your clipboard.", "OK");
 
     }
 
@@ -179,7 +193,7 @@ public partial class NoteDetails : ContentPage               //, IQueryAttributa
         string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
         string filePath = Path.Combine(desktopPath, fileName);
         File.WriteAllText(filePath, _note?.Content);
-        DisplayAlert("Downloaded", "Note Download Completed", "Okay");       
+        DisplayAlert("Downloaded", "Note Download To Desktop Completed", "Okay");       
     }
 
    

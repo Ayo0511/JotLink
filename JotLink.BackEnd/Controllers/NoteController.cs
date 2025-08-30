@@ -3,14 +3,16 @@ using JotLink.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Collections.Concurrent;
 
 namespace JotLink.BackEnd.Controllers
 {
     [ApiController]
     public class NoteController : ControllerBase
     {
-        private static readonly Dictionary<Guid, Note> Notes = new();
-        private static readonly Dictionary<string, Note> NotesByPublicId = new();
+        private static readonly ConcurrentDictionary<Guid, Note> Notes = new();
+        private static readonly ConcurrentDictionary<string, Note> NotesByPublicId = new();
+       // private static readonly ConcurrentDictionary<Guid, Note> NotesById = new(); //refactor with concurrent dictionary
 
         [HttpPost("notes")]
         public IActionResult CreateNote([FromBody] NoteDTO dto)

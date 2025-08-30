@@ -29,7 +29,11 @@
         </Border>
 
 
-
+        <ActivityIndicator
+            x:Name="progressIndicator"
+            IsVisible="false"
+            IsRunning="True"
+            />
         <Border>
             <Editor 
                 x:Name="TitleEditor"

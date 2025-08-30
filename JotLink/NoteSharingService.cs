@@ -31,6 +31,7 @@ namespace JotLink
             {
                 var dto = NoteMapper.ToDTO(noteFE);
                 var response = await _httpClient.PostAsJsonAsync("notes", dto);
+              
                 if (!response.IsSuccessStatusCode) return null;
 
                 var returnedDto = await response.Content.ReadFromJsonAsync<NoteDTO>();
