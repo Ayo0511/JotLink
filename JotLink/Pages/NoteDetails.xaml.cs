@@ -1,6 +1,7 @@
 using Microsoft.Maui;
 using Microsoft.Maui.Controls;
 using System;
+using System.Diagnostics;
 using System.IO;
  
 
@@ -20,7 +21,12 @@ public partial class NoteDetails : ContentPage               //, IQueryAttributa
 
     public NoteDetails()
     {      
-        InitializeComponent();    
+        InitializeComponent();
+       
+
+        var process = Process.GetCurrentProcess();
+       
+
     }
 
     protected override void OnAppearing()

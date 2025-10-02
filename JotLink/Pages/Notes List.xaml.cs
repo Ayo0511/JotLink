@@ -31,7 +31,7 @@ public partial class Notes_List : ContentPage
          Title = !string.IsNullOrEmpty(Title_txt.Text) ? Title_txt.Text: "Unnamed Note",
             Content = "" // prevent null
         };
-
+        
         var sharingService = new NoteSharingService();
         var sharedNote = await sharingService.ShareNoteAsync(tempNote);
         
@@ -47,6 +47,7 @@ public partial class Notes_List : ContentPage
             string link = $"https://jotlink.onrender.com/n/{sharedNote.PublicId}";
             await Clipboard.SetTextAsync(link);
             SimulateSelection(sharedNote);
+            Title_txt.Text = string.Empty;
         }
         else
         {
@@ -339,6 +340,7 @@ public partial class Notes_List : ContentPage
                 openMenu.BackgroundColor = Colors.MediumPurple;
                 addNoteBtn.BackgroundColor = Colors.MediumPurple;
                 delNoteBtn.Background = Colors.MediumPurple;
+                Title_txt.TextColor = Colors.Black;
             }
             else
             {
@@ -347,6 +349,7 @@ public partial class Notes_List : ContentPage
                 noteList.BackgroundColor = Colors.Black;
                 Title_txt.TextColor = Colors.Black;
                 grid.BackgroundColor = Colors.Black;
+                Title_txt.TextColor=Colors.Black;
             }
         }
     }

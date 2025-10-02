@@ -7,6 +7,9 @@
              
              >
 
+    <ScrollView>
+        
+  
     <VerticalStackLayout 
         x:Name="rootLayout"
                 Padding="20" 
@@ -117,9 +120,9 @@
             </Border>
         </HorizontalStackLayout>
     </VerticalStackLayout>
-    
-  
-    
+    </ScrollView>
+
+
 </ContentPage>
     
     

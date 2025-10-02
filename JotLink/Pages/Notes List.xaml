@@ -181,7 +181,7 @@
                  x:Name="Title_txt"
                    Placeholder="NoteTitle...." 
                    WidthRequest="175"
-                   TextColor="Black"
+                   TextColor="Gray"
                  
                  />
        </Border>
